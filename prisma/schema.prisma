@@ -14,10 +14,34 @@ datasource db {
 }
 
 model User {
-  id         Int      @id @default(autoincrement())
-  email      String   @unique
-  username   String   @unique
-  password   String
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id       Int      @id @default(autoincrement())
+  clerkId  String   @unique
+  email    String   @unique
+  username String
+  courses  UserCourse[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Course {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  price       Float
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  users UserCourse[]
+}
+
+model UserCourse {
+  id        Int  @id @default(autoincrement())
+  userId    Int
+  courseId  Int
+
+  user   User   @relation(fields: [userId], references: [id])
+  course Course @relation(fields: [courseId], references: [id])
+
+  createdAt DateTime @default(now())
 }

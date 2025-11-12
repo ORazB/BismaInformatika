@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Head from "next/head";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 
@@ -42,6 +43,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
+
         <body className={`${inter.className} antialiased`}>
           <Navbar />
           {children}
@@ -62,16 +64,16 @@ const Navbar = () => {
           </Link>
           <ul className="flex gap-10">
             <li>
-              <a className="font text-lg hover:underline" href="/">Home</a>
+              <a className="text-lg hover:underline" href="/">Home</a>
             </li>
             <li>
-              <a className="font text-lg hover:underline" href="/course">Courses</a>
+              <a className="text-lg hover:underline" href="/course">Courses</a>
             </li>
             <li>
-              <a className="font text-lg hover:underline" href="/about">About</a>
+              <a className="text-lg hover:underline" href="/about">About</a>
             </li>
             <li>
-              <a className="font text-lg hover:underline" href="/contact">Contact Us</a>
+              <a className="text-lg hover:underline" href="/contact">Contact Us</a>
             </li>
           </ul>
         </nav>

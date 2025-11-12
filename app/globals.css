@@ -24,3 +24,7 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.landing-image-clip-path {
+clip-path: polygon(9% 0, 0 100%, 100% 100%, 100% 0%)
+}

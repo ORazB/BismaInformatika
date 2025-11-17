@@ -20,6 +20,8 @@ model User {
   username String
   courses  UserCourse[]
 
+  role     String   @default("USER") // Possible values: "USER", "ADMIN"
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -34,7 +36,6 @@ model Course {
 
   users UserCourse[]
 }
-
 
 // Join table for many-to-many relationship between User and Course
 model UserCourse {

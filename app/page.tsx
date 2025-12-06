@@ -8,8 +8,8 @@ export default function Home() {
   return (
     <div className="w-full">
 
-      // Hero Slide
-      <section className="flex w-full bg-red-800">
+      {/* Hero Slide */}
+      <section className="flex w-full bg-primary overflow-hidden">
 
         <div className="container mx-auto px-8">
 
@@ -22,7 +22,7 @@ export default function Home() {
               <p className="text-white tracking-wide">Raih pengakuan resmi atas keahlian Anda melalui sertifikasi BNSP dan tingkatkan daya saing di dunia kerja</p>
 
               <div className="button__container mt-4 flex gap-4">
-                <button className="px-6 py-1 bg-white text-red-800 cursor-pointer font-semibold rounded-full transition">
+                <button className="px-6 py-1 bg-white text-primary cursor-pointer font-semibold rounded-full transition">
                   <i className='bx bx-caret-right align-middle text-xl'></i> Jelajahi Kursus
                 </button>
                 <button className="px-6 py-1 bg-transparent border-2 border-white text-white cursor-pointer font-semibold rounded-full transition">
@@ -33,41 +33,66 @@ export default function Home() {
 
             <div className="image__container relative w-full flex items-center justify-center">
 
-              <div className="play__line z-20 absolute left-18 rotate-6 h-500 w-3 bg-white flex flex-col items-center justify-center">
+              <div className="play__line z-20 absolute left-7 rotate-7 h-500 w-3 bg-white flex flex-col items-center justify-center">
                 <div className="relative flex items-center justify-center">
                   <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full p-10 bg-white opacity-50 rounded-full z-10"></div>
                   <button className="relative play__button bg-white -rotate-6 p-2 rounded-full z-20 cursor-pointer">
-                    <i className='text-red-800 text-5xl align-middle bx bx-play'></i>
+                    <i className='text-primary text-5xl align-middle bx bx-play'></i>
                   </button>
                 </div>
               </div>
 
-              <img className="landing-image-clip-path" src="/landing-page/hero-slider.png"></img>
+              <img className="w-full h-[463px] landing-image-clip-path" src="/landing-page/hero-slider.png"></img>
             </div>
 
           </div>
         </div>
       </section>
 
-      // Features
-      <section>
+      {/* Features */}
+      <section className="bg-secondary">
         <div className="container mx-auto px-8">
-          <div className="grid grid-cols-4">
+          <div className="grid grid-cols-3 py-10">
 
-            <div className="feature__item">
-
+            <div className="feature__item flex items-center justify-center gap-6">
+              <div className="feature__icon">
+                <i className='bx bxs-graduation text-6xl text-white'></i>
+              </div>
+              <div className="feature__text">
+                <h4 className="font-semibold text-lg mb-2 text-white">100+ Program courses</h4>
+                <p className="text-sm text-white">Explore the courses that interest you</p>
+              </div>
             </div>
-            <div className="feature__item">
 
+            <div className="feature__item flex items-center justify-center gap-6">
+              <div className="feature__icon">
+                <i className='bx  bx-user-check text-6xl text-white'></i> 
+              </div>
+              <div className="feature__text">
+                <h4 className="font-semibold text-lg mb-2 text-white">Expert instruction</h4>
+                <p className="text-sm text-white">Find the right instructor for you</p>
+              </div>
             </div>
-            <div className="feature__item">
 
+            <div className="feature__item flex items-center justify-center gap-6">
+              <div className="feature__icon">
+                <i className='bx bx-alarm alt text-6xl text-white'></i>
+              </div>
+              <div className="feature__text">
+                <h4 className="font-semibold text-lg mb-2 text-white">Lifetime access</h4>
+                <p className="text-sm text-white">Learn on your schedule</p>
+              </div>
             </div>
-            <div className="feature__item">
 
-            </div>
 
           </div>
+        </div>
+      </section>
+
+      {/* Essentials Skills */}
+      <section>
+        <div className="container mx-auto px-8">
+
         </div>
       </section>
     </div>

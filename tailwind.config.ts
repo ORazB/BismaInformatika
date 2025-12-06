@@ -2,14 +2,19 @@ import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
-    "./index.html",
-    "./src/**/*.{html,js,ts,jsx,tsx,vue,svelte}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+
   theme: {
+    
     extend: {
       colors: {
-        primary: '#1E40AF',
-        secondary: '#F59E0B',
+        primary: '#B52026',
+        secondary: '#8D181C',
+        accent: '#FFB606'
       }
     },
   },

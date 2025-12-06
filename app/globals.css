@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+/* * {
+  outline: 1px solid blue;
+} */
+
+@theme {
+  --color-bright-primary: oklch(0.5014 0.1834 25.39);
+
+  --color-primary: oklch(0.4184 0.1516 25.44);
+  --color-secondary: oklch(0.3 0.1516 25.44);
+  --color-accent: oklch(0.844 0.194 87.6);
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -26,5 +38,5 @@ body {
 }
 
 .landing-image-clip-path {
-clip-path: polygon(9% 0, 0 100%, 100% 100%, 100% 0%)
+  clip-path: polygon(9% 0, 0 100%, 100% 100%, 100% 0%)
 }

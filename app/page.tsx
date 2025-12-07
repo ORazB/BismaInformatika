@@ -1,8 +1,13 @@
-// Images
+// Next.js
+import Link from "next/link";
 import Image from "next/image";
 
-// Box Icons
+// Components
+import HomeSlider from "@/components/sliders/HomeSlider";
+
+// Styles
 import 'boxicons/css/boxicons.min.css';
+
 
 export default function Home() {
   return (
@@ -42,7 +47,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <img className="w-full h-[463px] landing-image-clip-path" src="/landing-page/hero-slider.png"></img>
+              <Image width={1000} height={463} alt="Sertifikasi BNSP" className="w-full h-[463px] landing-image-clip-path" src="/landing-page/hero-slider.png"></Image>
             </div>
 
           </div>
@@ -66,7 +71,7 @@ export default function Home() {
 
             <div className="feature__item flex items-center justify-center gap-6">
               <div className="feature__icon">
-                <i className='bx  bx-user-check text-6xl text-white'></i> 
+                <i className='bx  bx-user-check text-6xl text-white'></i>
               </div>
               <div className="feature__text">
                 <h4 className="font-semibold text-lg mb-2 text-white">Expert instruction</h4>
@@ -90,8 +95,50 @@ export default function Home() {
       </section>
 
       {/* Essentials Skills */}
-      <section>
+      <section className="mt-24">
         <div className="container mx-auto px-8">
+          <div className="flex gap-8 items-center">
+
+            <div className="grid h-full gap-2 w-5/12">
+              <h2 className="text-text text-4xl font-semibold">Learn essential career and life skills</h2>
+              <p className="text-gray-text text-base">Essential career and life skills help you succeed in communication, problem-solving, and time management.</p>
+
+              <Link href={"/course"}>
+                <button className="justify-self-start mt-4 px-6 py-3 bg-primary text-white cursor-pointer font-semibold rounded-full transition">
+                  <i className='bx bx-caret-right align-middle text-xl'></i> Explore Courses
+                </button>
+              </Link>
+            </div>
+
+            <div className="grid place-items-center">
+
+              <HomeSlider />
+
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits */}
+      <section className="m-24">
+        <div className="container mx-auto px-8">
+
+          <div className="grid grid-cols-2 place-items-center">
+
+            <div className="grid gap-2">
+              <div className=""></div>
+
+              <div className="">
+                {/* <Image width={500} height={500} alt="Benefits" src="/landing-page/benefits.png" className="w-full h-auto"></Image> */}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2">
+
+            </div>
+
+          </div>
 
         </div>
       </section>

@@ -55,7 +55,7 @@ export default function RootLayout({
 
 const Navbar = () => {
   return (
-    <div className="w-full border-b-2 shadow border-zinc-300 p-2">
+    <div className="w-full border-b-2 shadow border-zinc-300 bg-background p-2 z-50 top-0 sticky">
       <header className="container mx-auto flex justify-between w-4/5 items-center gap-4 h-16">
 
         <nav className="flex items-center gap-8">

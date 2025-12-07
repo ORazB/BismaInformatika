@@ -10,10 +10,12 @@
   --color-primary: oklch(0.4184 0.1516 25.44);
   --color-secondary: oklch(0.3 0.1516 25.44);
   --color-accent: oklch(0.844 0.194 87.6);
+  --color-text: oklch(0.235 0 0);
+  --color-gray-text: oklch(0.7517 0.0057 17.28);
 }
 
 :root {
-  --background: #ffffff;
+  --background: #FEFFFE;
   --foreground: #171717;
 }
 
@@ -30,6 +32,23 @@
     --foreground: #ededed;
   }
 } */
+
+/* Swiper Pagination Bullets */
+.swiper-pagination-bullet {
+  width: 12px !important;
+  height: 12px !important;
+  background-color: #ccc;
+  opacity: 1;
+  transition: width 0.2s ease !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: var(--color-primary) !important;
+  width: 20px !important;
+  border-radius: 2rem !important;
+  transition: width 0.2s ease !important;
+}
+
 
 body {
   background: var(--background);

@@ -6,50 +6,56 @@ import Image from "next/image";
 import HomeSlider from "@/components/sliders/HomeSlider";
 
 // Styles
-import 'boxicons/css/boxicons.min.css';
-
+import "boxicons/css/boxicons.min.css";
 
 export default function Home() {
   return (
     <div className="w-full">
-
       {/* Hero Slide */}
       <section className="flex w-full bg-primary overflow-hidden">
-
         <div className="container mx-auto px-8">
-
           <div className="grid grid-cols-2 gap-8 h-full">
-
             <div className="text__container grid gap-2 py-20">
               <h3 className="text-white">Sertifikasi BNSP</h3>
-              <h2 className="text-white font-semibold tracking-wide text-4xl">Menjadi Kompeten Dengan Sertifikasi BNSP</h2>
+              <h2 className="text-white font-semibold tracking-wide text-4xl">
+                Menjadi Kompeten Dengan Sertifikasi BNSP
+              </h2>
 
-              <p className="text-white tracking-wide">Raih pengakuan resmi atas keahlian Anda melalui sertifikasi BNSP dan tingkatkan daya saing di dunia kerja</p>
+              <p className="text-white tracking-wide">
+                Raih pengakuan resmi atas keahlian Anda melalui sertifikasi BNSP
+                dan tingkatkan daya saing di dunia kerja
+              </p>
 
               <div className="button__container mt-4 flex gap-4">
                 <button className="px-6 py-1 bg-white text-primary cursor-pointer font-semibold rounded-full transition">
-                  <i className='bx bx-caret-right align-middle text-xl'></i> Jelajahi Kursus
+                  <i className="bx bx-caret-right align-middle text-xl"></i>{" "}
+                  Jelajahi Kursus
                 </button>
                 <button className="px-6 py-1 bg-transparent border-2 border-white text-white cursor-pointer font-semibold rounded-full transition">
-                  <i className='bx bx-caret-right align-middle text-xl'></i> Bicara Dengan Expert
+                  <i className="bx bx-caret-right align-middle text-xl"></i>{" "}
+                  Bicara Dengan Expert
                 </button>
               </div>
             </div>
 
             <div className="image__container relative w-full flex items-center justify-center">
-
               <div className="play__line z-20 absolute left-7 rotate-7 h-500 w-3 bg-white flex flex-col items-center justify-center">
                 <div className="relative flex items-center justify-center">
                   <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full p-10 bg-white opacity-50 rounded-full z-10"></div>
                   <button className="relative play__button bg-white -rotate-6 p-2 rounded-full z-20 cursor-pointer">
-                    <i className='text-primary text-5xl align-middle bx bx-play'></i>
+                    <i className="text-primary text-5xl align-middle bx bx-play"></i>
                   </button>
                 </div>
               </div>
 
-              <Image width={1000} height={463} alt="Sertifikasi BNSP" className="w-full h-[463px] landing-image-clip-path" src="/landing-page/hero-slider.png"></Image>
+              <Image
+                width={1000}
+                height={463}
+                alt="Sertifikasi BNSP"
+                className="w-full h-[463px] landing-image-clip-path"
+                src="/landing-page/hero-slider.png"
+              ></Image>
             </div>
-
           </div>
         </div>
       </section>
@@ -58,90 +64,128 @@ export default function Home() {
       <section className="bg-secondary">
         <div className="container mx-auto px-8">
           <div className="grid grid-cols-3 py-10">
-
             <div className="feature__item flex items-center justify-center gap-6">
               <div className="feature__icon">
-                <i className='bx bxs-graduation text-6xl text-white'></i>
+                <i className="bx bxs-graduation text-6xl text-white"></i>
               </div>
               <div className="feature__text">
-                <h4 className="font-semibold text-lg mb-2 text-white">100+ Program courses</h4>
-                <p className="text-sm text-white">Explore the courses that interest you</p>
+                <h4 className="font-semibold text-lg mb-2 text-white">
+                  100+ Program courses
+                </h4>
+                <p className="text-sm text-white">
+                  Explore the courses that interest you
+                </p>
               </div>
             </div>
 
             <div className="feature__item flex items-center justify-center gap-6">
               <div className="feature__icon">
-                <i className='bx  bx-user-check text-6xl text-white'></i>
+                <i className="bx  bx-user-check text-6xl text-white"></i>
               </div>
               <div className="feature__text">
-                <h4 className="font-semibold text-lg mb-2 text-white">Expert instruction</h4>
-                <p className="text-sm text-white">Find the right instructor for you</p>
+                <h4 className="font-semibold text-lg mb-2 text-white">
+                  Expert instruction
+                </h4>
+                <p className="text-sm text-white">
+                  Find the right instructor for you
+                </p>
               </div>
             </div>
 
             <div className="feature__item flex items-center justify-center gap-6">
               <div className="feature__icon">
-                <i className='bx bx-alarm alt text-6xl text-white'></i>
+                <i className="bx bx-alarm alt text-6xl text-white"></i>
               </div>
               <div className="feature__text">
-                <h4 className="font-semibold text-lg mb-2 text-white">Lifetime access</h4>
+                <h4 className="font-semibold text-lg mb-2 text-white">
+                  Lifetime access
+                </h4>
                 <p className="text-sm text-white">Learn on your schedule</p>
               </div>
             </div>
-
-
           </div>
         </div>
       </section>
 
       {/* Essentials Skills */}
-      <section className="mt-24">
+      <section className="mt-28">
         <div className="container mx-auto px-8">
           <div className="flex gap-8 items-center">
-
             <div className="grid h-full gap-2 w-5/12">
-              <h2 className="text-text text-4xl font-semibold">Learn essential career and life skills</h2>
-              <p className="text-gray-text text-base">Essential career and life skills help you succeed in communication, problem-solving, and time management.</p>
+              <h2 className="text-text text-4xl font-semibold">
+                Learn essential career and life skills
+              </h2>
+              <p className="text-gray-text text-sm tracking-wide">
+                Essential career and life skills help you succeed in
+                communication, problem-solving, and time management.
+              </p>
 
               <Link href={"/course"}>
                 <button className="justify-self-start mt-4 px-6 py-3 bg-primary text-white cursor-pointer font-semibold rounded-full transition">
-                  <i className='bx bx-caret-right align-middle text-xl'></i> Explore Courses
+                  <i className="bx bx-caret-right align-middle text-xl"></i>{" "}
+                  Explore Courses
                 </button>
               </Link>
             </div>
 
             <div className="grid place-items-center">
-
               <HomeSlider />
-
             </div>
-
           </div>
         </div>
       </section>
 
       {/* Benefits */}
-      <section className="m-24">
+      <section className="mt-28">
         <div className="container mx-auto px-8">
 
-          <div className="grid grid-cols-2 place-items-center">
+          <div className="w-2/5 grid gap-2">
+            <h2 className="text-text text-4xl font-semibold">
+              Find out more about us co-learning experience
+            </h2>
+            <p className="text-gray-text text-sm tracking-wide">
+              We believe everyone should have the oppportunity to create
+              progress through technology and develop the skills.
+            </p>
+          </div>
 
-            <div className="grid gap-2">
-              <div className=""></div>
-
-              <div className="">
-                {/* <Image width={500} height={500} alt="Benefits" src="/landing-page/benefits.png" className="w-full h-auto"></Image> */}
-              </div>
+          <div className="grid grid-cols-2 mt-8">
+            <div className="flex">
+              <Image width={400} height={400} alt="Benefits" src="/landing-page/benefit.webp" className="w-5/6"></Image>
             </div>
-
-            <div className="grid grid-cols-2">
-
+            <div className="grid grid-cols-2 gap-4 relative">
+              <div className="rounded-xl w-full h-full bg-gray-500"></div>
+              <div className="rounded-xl w-full h-full bg-gray-500"></div>
+              <div className="rounded-xl w-full h-full bg-gray-500"></div>
+              <div className="rounded-xl w-full h-full bg-gray-500"></div>
             </div>
-
           </div>
 
         </div>
       </section>
+
+      <section className="m-28">
+        <div className="container mx-auto px-8">
+          <div className="w-2/5 grid gap-2">
+            <h2 className="text-text text-4xl font-semibold">
+              Skills to transform your career and life
+            </h2>
+            <p className="text-gray-text text-sm font-light w-max tracking-wide">
+              From critical skills to technical topics, Udemy supports your professional development.
+            </p>
+          </div>
+
+          <div className="">
+            
+          </div>
+
+          <div className="grid grid-cols-4 gap-4">
+
+          </div>
+        </div>
+      </section>
+
+
     </div>
   );
 }

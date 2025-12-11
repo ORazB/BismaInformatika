@@ -195,9 +195,79 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className=""></div>
+          <div className="grid grid-cols-3 gap-8 mt-8">
+            <div className="bg-gray-100 p-4 rounded-2xl grid gap-6">
+              <div className="rounded-full p-4 bg-primary justify-self-start">
+                <i className="text-white bx bxs-quote-left text-2xl"></i>
+              </div>
+
+              <p className="px-2 text-text font-semibold text-lg/7">
+                I was struggling to transition from print to digital design, and
+                I often felt overwhelmed by all the new tools and concepts. But
+                Bisma Academy courses guided me step by step and helped me
+                refine my UI/UX skills with clear explanations.
+              </p>
+
+              <div className="flex items-center gap-2 mt-8">
+                <div className="rounded-full w-[50px] h-[50px]">
+                  <Image className="w-full h-full rounded-full object-cover" width={64} height={64} src={"/landing-page/profiles/profile-1.jpg"} alt="review"></Image>
+                </div>
+                <div className="grid">
+                  <h3 className="text-text font-semibold tracking-wide">Bessie Cooper</h3>
+                  <p className="text-gray-text text-sm">Student</p>
+                </div>
+              </div>
+
+            </div>
+
+            <div className="bg-gray-100 p-4 rounded-2xl grid gap-6">
+              <div className="rounded-full p-4 bg-primary justify-self-start">
+                <i className="text-white bx bxs-quote-left text-2xl"></i>
+              </div>
+
+              <p className="px-2 text-text font-semibold text-lg/7">
+              What I loved most about Bisma Academy was the hands-on approach that made every lesson feel relevant and engaging. The courses were highly interactive, filled with real examples, and I could immediately apply what I was learning.
+              </p>
+
+              <div className="flex items-center gap-2 mt-8">
+                <div className="rounded-full w-[50px] h-[50px]">
+                  <Image className="w-full h-full rounded-full object-cover" width={64} height={64} src={"/landing-page/profiles/profile-1.jpg"} alt="review"></Image>
+                </div>
+                <div className="grid">
+                  <h3 className="text-text font-semibold tracking-wide">Bessie Cooper</h3>
+                  <p className="text-gray-text text-sm">Student</p>
+                </div>
+              </div>
+
+            </div>
+
+            <div className="bg-gray-100 p-4 rounded-2xl grid gap-6">
+              <div className="rounded-full p-4 bg-primary justify-self-start">
+                <i className="text-white bx bxs-quote-left text-2xl"></i>
+              </div>
+
+              <p className="px-2 text-text font-semibold text-lg/7">
+              I work a full-time job and never imagined I’d have enough time or energy to learn coding. However, the bite-sized lessons, supportive community, and flexible schedule at Bisma Academy made it surprisingly manageable.
+              </p>
+
+              <div className="flex items-center gap-2 mt-8">
+                <div className="rounded-full w-[50px] h-[50px]">
+                  <Image className="w-full h-full rounded-full object-cover" width={64} height={64} src={"/landing-page/profiles/profile-1.jpg"} alt="review"></Image>
+                </div>
+                <div className="grid">
+                  <h3 className="text-text font-semibold tracking-wide">Bessie Cooper</h3>
+                  <p className="text-gray-text text-sm">Student</p>
+                </div>
+              </div>
+
+            </div>
+
+            
+          </div>
         </div>
       </section>
+
+      {/*  */}
     </div>
   );
 }

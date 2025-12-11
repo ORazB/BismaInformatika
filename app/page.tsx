@@ -4,6 +4,7 @@ import Image from "next/image";
 
 // Components
 import HomeSlider from "@/components/sliders/HomeSlider";
+import CourseList from "@/components/LandingComponents/CourseList";
 
 // Styles
 import "boxicons/css/boxicons.min.css";
@@ -115,7 +116,7 @@ export default function Home() {
               <h2 className="text-text text-4xl font-semibold">
                 Learn essential career and life skills
               </h2>
-              <p className="text-gray-text text-sm tracking-wide">
+              <p className="text-gray-text font-light text-sm tracking-wide">
                 Essential career and life skills help you succeed in
                 communication, problem-solving, and time management.
               </p>
@@ -138,12 +139,11 @@ export default function Home() {
       {/* Benefits */}
       <section className="mt-28">
         <div className="container mx-auto px-8">
-
           <div className="w-2/5 grid gap-2">
             <h2 className="text-text text-4xl font-semibold">
               Find out more about us co-learning experience
             </h2>
-            <p className="text-gray-text text-sm tracking-wide">
+            <p className="text-gray-text font-light text-sm tracking-wide">
               We believe everyone should have the oppportunity to create
               progress through technology and develop the skills.
             </p>
@@ -151,7 +151,13 @@ export default function Home() {
 
           <div className="grid grid-cols-2 mt-8">
             <div className="flex">
-              <Image width={400} height={400} alt="Benefits" src="/landing-page/benefit.webp" className="w-5/6"></Image>
+              <Image
+                width={400}
+                height={400}
+                alt="Benefits"
+                src="/landing-page/benefit.webp"
+                className="w-5/6"
+              ></Image>
             </div>
             <div className="grid grid-cols-2 gap-4 relative">
               <div className="rounded-xl w-full h-full bg-gray-500"></div>
@@ -160,32 +166,38 @@ export default function Home() {
               <div className="rounded-xl w-full h-full bg-gray-500"></div>
             </div>
           </div>
-
         </div>
       </section>
 
-      <section className="m-28">
+      {/* Course List */}
+      <section className="mt-28">
         <div className="container mx-auto px-8">
-          <div className="w-2/5 grid gap-2">
+          <div className="w-full grid gap-2">
             <h2 className="text-text text-4xl font-semibold">
               Skills to transform your career and life
             </h2>
             <p className="text-gray-text text-sm font-light w-max tracking-wide">
-              From critical skills to technical topics, Udemy supports your professional development.
+              From critical skills to technical topics, Udemy supports your
+              professional development.
             </p>
           </div>
 
-          <div className="">
-            
-          </div>
-
-          <div className="grid grid-cols-4 gap-4">
-
-          </div>
+          <CourseList />
         </div>
       </section>
 
+      {/* Reviews */}
+      <section className="m-28">
+        <div className="container mx-auto px-8">
+          <div className="grid place-items-center gap-2">
+            <h2 className="text-text text-5xl font-semibold w-1/3 tracking-wide text-center">
+              Hear Directly From Our Learners
+            </h2>
+          </div>
 
+          <div className=""></div>
+        </div>
+      </section>
     </div>
   );
 }

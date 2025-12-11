@@ -1,0 +1,68 @@
+{
+  "Python": [
+    {
+      "title": "100 Days of Code: The Complete Python Pro Bootcamp",
+      "image": "/landing-page/course-list/Image.png",
+      "author": "Dr. Angela Yu, Developer and Lead Instruktor",
+      "rating": 4.2,
+      "totalReview": 492203,
+      "price": 150000,
+      "destination": ""
+    },
+    {
+      "title": "100 Days of Cosde: The Complete Python Pro Bootcamp",
+      "image": "/landing-page/course-list/Image.png",
+      "author": "Dr. Angela Yu, Developer and Lead Instruktor",
+      "rating": 4.2,
+      "totalReview": 492203,
+      "price": 150000
+    },
+    {
+      "title": "100 Days oaf Code: The Complete Python Pro Bootcamp",
+      "image": "/landing-page/course-list/Image.png",
+      "author": "Dr. Angela Yu, Developer and Lead Instruktor",
+      "rating": 4.2,
+      "totalReview": 492203,
+      "price": 150000
+    },
+    {
+      "title": "100 Days of Csadode: The Complete Python Pro Bootcamp",
+      "image": "/landing-page/course-list/Image.png",
+      "author": "Dr. Angela Yu, Developer and Lead Instruktor",
+      "rating": 4.2,
+      "totalReview": 492203,
+      "price": 150000
+    }
+  ],
+
+  "Microsoft Excel": [
+    {
+      "Title": "Excel for Beginners",
+      "Description": "Learn the fundamentals of Excel."
+    },
+    {
+      "Title": "Excel for Data Analysis",
+      "Description": "Use Excel to analyze and visualize data."
+    }
+  ],
+  "Digital Marketing": [
+    {
+      "Title": "Social Media Marketing",
+      "Description": "Learn how to market on social media platforms."
+    },
+    {
+      "Title": "SEO Fundamentals",
+      "Description": "Learn the basics of SEO for websites."
+    }
+  ],
+  "Game Development": [
+    {
+      "Title": "Introduction to Unity",
+      "Description": "Learn to build 2D and 3D games using Unity."
+    },
+    {
+      "Title": "Game Development with Unreal Engine",
+      "Description": "Create high-performance games using Unreal Engine."
+    }
+  ]
+}

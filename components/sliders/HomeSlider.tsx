@@ -46,7 +46,7 @@ export default function HomeSlider() {
       >
 
         {slides.map((slide, i) => (
-          <SwiperSlide>
+          <SwiperSlide key={i}>
             <div className="relative aspect-3/4 overflow-hidden rounded-2xl shadow-xl">
               <Image
                 src={`/landing-page/sliders/slide-${i + 1}.png`}
@@ -56,7 +56,7 @@ export default function HomeSlider() {
               // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
 
-              /* Overlay */
+              {/* Overlay */}
               <div className="absolute transition-opacity w-full rounded-1xl h-3/6 bottom-0 flex flex-col justify-end p-4">
 
                 <Link href={slide.destination}>

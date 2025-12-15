@@ -6,9 +6,6 @@ import Image from "next/image";
 import HomeSlider from "@/components/sliders/HomeSlider";
 import CourseList from "@/components/LandingComponents/CourseList";
 
-// Styles
-import "boxicons/css/boxicons.min.css";
-
 export default function Home() {
   return (
     <div className="w-full">

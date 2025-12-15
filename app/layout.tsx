@@ -5,6 +5,9 @@ import "./globals.css";
 
 import Link from "next/link";
 
+// Styles
+import "boxicons/css/boxicons.min.css";
+
 // Clerk
 import {
   ClerkProvider,

@@ -56,7 +56,7 @@ export default function FilterButton() {
           <button
             key={option}
             onClick={() => handleSortChange(option)}
-            className={`w-full text-left px-6 py-3 hover:bg-gray-100 transition-colors first:rounded-t-lg last:rounded-b-lg ${sortBy === option ? 'bg-blue-50 text-primary font-semibold' : 'text-gray-text'
+            className={`cursor-pointer w-full text-left px-6 py-3 hover:bg-gray-100 transition-colors first:rounded-t-lg last:rounded-b-lg ${sortBy === option ? 'bg-blue-50 text-primary font-semibold' : 'text-gray-text'
               }`}
           >
             {option}

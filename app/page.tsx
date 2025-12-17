@@ -5,6 +5,7 @@ import Image from "next/image";
 // Components
 import HomeSlider from "@/components/sliders/HomeSlider";
 import CourseList from "@/components/LandingComponents/CourseList";
+import NewsLetter from "@/components/LayoutComponents/NewsLetter"
 
 export default function Home() {
   return (
@@ -308,6 +309,7 @@ export default function Home() {
         </div>
       </section>
 
+      <NewsLetter/>
       {/* Newsletter */}
       <section className="m-28">
         <div className="container mx-auto px-8">

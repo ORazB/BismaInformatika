@@ -70,7 +70,7 @@ const Navbar = () => {
               <a className="text-lg hover:underline" href="/">Home</a>
             </li>
             <li>
-              <a className="text-lg hover:underline" href="/course">Courses</a>
+              <a className="text-lg hover:underline" href="/courses">Courses</a>
             </li>
             <li>
               <a className="text-lg hover:underline" href="/about">About</a>

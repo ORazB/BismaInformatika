@@ -7,7 +7,6 @@ export default function NewsLetter() {
         <div className="container mx-auto px-8 py-16">
             <div className="bg-primary rounded-3xl p-8 md:p-12 lg:p-16">
                 <div className="grid grid-cols-2">
-                    <div>
                         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
                             Subscribe to our<br />newsletter
                         </h2>
@@ -27,12 +26,11 @@ export default function NewsLetter() {
                             <button className="px-8 py-3 cursor-pointer bg-accent text-white font-semibold rounded-full whitespace-nowrap">
                                 Subscribe
                             </button>
-                        </div>
                     </div>
 
-                    <div className="w-full relative overf">
+                    {/* <div className="w-full relative overflow-y-hidden">
                         <Image className="absolute w-full" src={"/layout-image/newsletter.png"} width={500} height={500} alt={"Newsletter"}></Image>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

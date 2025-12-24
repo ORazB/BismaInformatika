@@ -9,7 +9,7 @@
 
   --color-primary: oklch(0.4184 0.1516 25.44);
   --color-secondary: oklch(0.3 0.1516 25.44);
-  --color-accent: oklch(0.8353 0.17306327965473564 85.23157276198906)
+  --color-accent: oklch(0.8353 0.1731 85.85);
   --color-text: oklch(0.235 0 0);
   --color-gray-text: oklch(0.7517 0.0057 17.28);
 }

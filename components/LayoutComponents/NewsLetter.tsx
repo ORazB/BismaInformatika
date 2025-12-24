@@ -18,7 +18,7 @@ export default function NewsLetter() {
                                     placeholder="Your email"
                                     className="w-full px-6 py-3 rounded-full bg-white bg-opacity-40 placeholder-gray-text text-text focus:outline-none focus:ring-2 focus:ring-primary"
                                 />
-                                <p className="text-xs text-gray-text mt-3 ml-3">
+                                <p className="text-xs text-white mt-3 ml-3">
                                     We care about your data in our privacy policy
                                 </p>
                             </div>

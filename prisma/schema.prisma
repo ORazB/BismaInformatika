@@ -12,14 +12,28 @@ datasource db {
   provider = "mysql"
 }
 
-model User {
-  id       Int      @id @default(autoincrement())
-  clerkId  String   @unique
-  email    String   @unique
-  username String
-  courses  UserCourse[]
+// Enums for user roles and course statuses
+enum UserRole {
+  USER
+  ADMIN
+}
 
-  role     String   @default("USER") // Possible values: "USER", "ADMIN"
+enum CourseStatus {
+  IN_PROGRESS
+  COMPLETED
+}
+
+model User {
+  id          Int           @id @default(autoincrement())
+  clerkId     String        @unique
+  email       String        @unique
+  username    String
+  address     String?
+  phoneNumber String?
+
+  role UserRole @default(USER)
+
+  enrollments UserCourse[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -29,22 +43,32 @@ model Course {
   id          Int      @id @default(autoincrement())
   title       String
   description String
-  price       Float
-  // category    String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
 
-  users UserCourse[]
+  // Why not use float?
+  // Because floats can introduce rounding errors in financial calculations.
+  // Therefore we use Decimal for precise representation of monetary values.
+
+  // Btw 10 means total digits, 2 means digits after decimal point
+  price       Decimal  @db.Decimal(10, 2)
+  // reviews     Int      @default(0)
+
+  enrollments UserCourse[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
-// Join table for many-to-many relationship between User and Course
 model UserCourse {
-  id        Int  @id @default(autoincrement())
-  userId    Int
-  courseId  Int
+  id            Int          @id @default(autoincrement())
+  userId        Int
+  courseId      Int
+  courseStatus  CourseStatus @default(IN_PROGRESS)
 
   user   User   @relation(fields: [userId], references: [id])
   course Course @relation(fields: [courseId], references: [id])
 
   createdAt DateTime @default(now())
+
+  // Ensure a user can enroll in a course only once
+  @@unique([userId, courseId])
 }

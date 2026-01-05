@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 // Components
+import NewsLetter from "@/components/LayoutComponents/NewsLetter";
 
 // Styles
 
@@ -113,7 +114,7 @@ export default function Contact() {
       </section>
 
       {/* Google Maps Embed */}
-      <section className="m-28">
+      <section className="mt-28">
         <div className="container mx-auto px-8">
 
           <h2 className="text-text text-5xl font-semibold tracking-wide text-center mb-8">
@@ -121,6 +122,12 @@ export default function Contact() {
           </h2>
 
           <iframe className="gmap_iframe w-full h-[300px]" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=Jl. Pandu No.9, Sumerta Kelod, Kec. Denpasar Tim., Kota Denpasar, Bali 80239&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+        </div>
+      </section>
+
+      <section className="m-28">
+        <div className="container mx-auto px-8">
+          <NewsLetter />
         </div>
       </section>
 

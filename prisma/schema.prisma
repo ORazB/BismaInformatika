@@ -10,9 +10,11 @@ generator client {
 
 datasource db {
   provider = "mysql"
+  // url = env("DATABASE_URL")
 }
 
 // Enums for user roles and course statuses
+// Why Enum? Because they provide a fixed set of values, ensuring data integrity and consistency
 enum UserRole {
   USER
   ADMIN
@@ -24,12 +26,13 @@ enum CourseStatus {
 }
 
 model User {
-  id          Int           @id @default(autoincrement())
-  clerkId     String        @unique
-  email       String        @unique
+  id          Int     @id @default(autoincrement())
+  clerkId     String  @unique
+  email       String  @unique
   username    String
   address     String?
   phoneNumber String?
+  profileImage String?
 
   role UserRole @default(USER)
 
@@ -40,16 +43,20 @@ model User {
 }
 
 model Course {
-  id          Int      @id @default(autoincrement())
+  id          Int    @id @default(autoincrement())
   title       String
   description String
+  imageUrl    String
+
+  startDate DateTime
+  endDate   DateTime
 
   // Why not use float?
   // Because floats can introduce rounding errors in financial calculations.
   // Therefore we use Decimal for precise representation of monetary values.
 
   // Btw 10 means total digits, 2 means digits after decimal point
-  price       Decimal  @db.Decimal(10, 2)
+  price Decimal @db.Decimal(10, 2)
   // reviews     Int      @default(0)
 
   enrollments UserCourse[]
@@ -59,10 +66,10 @@ model Course {
 }
 
 model UserCourse {
-  id            Int          @id @default(autoincrement())
-  userId        Int
-  courseId      Int
-  courseStatus  CourseStatus @default(IN_PROGRESS)
+  id           Int          @id @default(autoincrement())
+  userId       Int
+  courseId     Int
+  courseStatus CourseStatus @default(IN_PROGRESS)
 
   user   User   @relation(fields: [userId], references: [id])
   course Course @relation(fields: [courseId], references: [id])

@@ -49,11 +49,11 @@ export default function HomeSlider() {
           <SwiperSlide key={i}>
             <div className="relative aspect-3/4 overflow-hidden rounded-2xl shadow-xl">
               <Image
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 src={`/landing-page/sliders/slide-${i + 1}.png`}
                 alt={slide.title}
                 fill
                 className="object-cover"
-              // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
 
               {/* Overlay */}

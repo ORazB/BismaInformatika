@@ -48,6 +48,7 @@ export default function Home() {
               </div>
 
               <Image
+                loading="eager"
                 width={1000}
                 height={463}
                 alt="Sertifikasi BNSP"

@@ -4,9 +4,13 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 
 import Link from "next/link";
+import Image from "next/image";
 
 // Styles
 import "boxicons/css/boxicons.min.css";
+
+// Components
+import UserProfileButton from "@/components/LayoutComponents/UserProfileButton";
 
 // Clerk
 import {
@@ -42,7 +46,9 @@ export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>
+) {
+
   return (
     <ClerkProvider>
       <html lang="en">
@@ -57,6 +63,7 @@ export default function RootLayout({
 }
 
 const Navbar = () => {
+
   return (
     <div className="w-full border-b-2 shadow border-zinc-300 bg-background p-2 z-10000 top-0 sticky">
       <header className="container mx-auto flex justify-between w-4/5 items-center gap-4 h-16">
@@ -102,7 +109,7 @@ const Navbar = () => {
 
           <SignedIn>
             <div className="scale-125 cursor-pointer">
-              <UserButton />
+              <UserProfileButton />
             </div>
           </SignedIn>
         </div>

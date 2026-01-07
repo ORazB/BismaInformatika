@@ -1,6 +1,8 @@
 import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
+
 import { clerkClient, auth } from "@clerk/nextjs/server";
+
 import { UserRole } from "@prisma/client";
 
 export async function POST(req: NextRequest) {
@@ -9,15 +11,15 @@ export async function POST(req: NextRequest) {
 
     console.log("1. Getting auth...");
     const { userId } = await auth();
-    
+
     console.log("2. Checking authorization...");
     if (!userId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
-    
+
     console.log("3. Parsing form data...");
     const formData = await req.formData();
-    
+
     console.log("4. Fetching acting user...");
     const actingUser = await prisma.user.findUnique({
       where: { clerkId: userId }
@@ -58,10 +60,15 @@ export async function POST(req: NextRequest) {
         : null;
 
     const passwordRaw = formData.get("password");
-    const password =
-      typeof passwordRaw === "string" && passwordRaw.length >= 8
-        ? passwordRaw
-        : null;
+
+    if (typeof passwordRaw !== "string" || passwordRaw.length < 8) {
+      return NextResponse.json(
+        { success: false, error: "Password must be at least 8 characters long" },
+        { status: 400 }
+      );
+    }
+
+    const password = passwordRaw;
 
     const profileImage = formData.get("profileImage") as File | null;
 
@@ -88,7 +95,21 @@ export async function POST(req: NextRequest) {
       createData.emailAddress = [email];
     }
 
-    createdClerkUser = await client.users.createUser(createData);
+    try {
+      createdClerkUser = await client.users.createUser(createData);
+    } catch (err: any) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: err?.errors?.[0]?.message ?? "Invalid credentials",
+          code: err?.errors?.[0]?.code ?? null,
+        },
+        { status: 400 }
+      );
+    }
+
+
+    console.log("User Created: ", createdClerkUser);
 
     if (profileImage && profileImage.size > 0) {
       const uploadedImage = await client.users.updateUserProfileImage(createdClerkUser.id, {
@@ -121,6 +142,7 @@ export async function POST(req: NextRequest) {
       try {
         const client = await clerkClient();
         await client.users.deleteUser(createdClerkUser.id);
+
         console.log("Cleaned up Clerk user:", createdClerkUser.id);
       } catch (cleanupError) {
         console.error("Failed to cleanup Clerk user:", cleanupError);

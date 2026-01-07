@@ -2,12 +2,15 @@
 
 import { useRouter } from "next/navigation";
 
+import { useState } from "react";
+
 // Components
 import ProfileImageInput from "@/components/ProfileComponents/ProfileImageInput";
 import BackButton from "@/components/ProfileComponents/BackButton";
 
 export default function UsersAddPanel() {
   const router = useRouter();
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -23,17 +26,11 @@ export default function UsersAddPanel() {
       router.refresh();
       router.back();
     } else {
-      // Get the raw text first to see what the server actually sent
-      const errorText = await response.text();
+      const data = await response.json();
       
-      try {
-        const errorData = JSON.parse(errorText);
-        console.error("Server Error Message:", errorData.error);
-      } catch (e) {
-        console.error("Server returned non-JSON response:", errorText);
-        console.log("Current Form Data:", Object.fromEntries(formData.entries()));
-      }
-    
+      console.log(data);
+      setError(data.error ?? "Something went wrong");
+
       console.log("Current Form Data:", Object.fromEntries(formData.entries()));
     }
   };
@@ -122,6 +119,12 @@ export default function UsersAddPanel() {
 
         {/* Profile Image */}
         <ProfileImageInput initialImageUrl="/profile-page/profile-placeholder.png" />
+
+        {error && (
+          <div className="rounded-lg border border-red-300 bg-red-50 px-4 py-2 text-sm text-red-700">
+            {error}
+          </div>
+        )}
 
         {/* Submit */}
         <button

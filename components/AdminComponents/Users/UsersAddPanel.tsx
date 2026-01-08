@@ -23,8 +23,8 @@ export default function UsersAddPanel() {
     });
 
     if (response.ok) {
+      router.push("/admin/users");
       router.refresh();
-      router.back();
     } else {
       const data = await response.json();
       

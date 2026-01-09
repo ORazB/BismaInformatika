@@ -1,6 +1,7 @@
 import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@clerk/nextjs/server";
+
+import { auth, clerkClient} from "@clerk/nextjs/server";
 
 export async function DELETE(req: NextRequest) {
   try {
@@ -16,10 +17,20 @@ export async function DELETE(req: NextRequest) {
       return new NextResponse("Missing ID", { status: 400 })
     }
 
+    const targetUser = await prisma.user.findUnique({
+      where: {id: parseInt(id)}
+    })
+
+    if (!targetUser) {
+      return NextResponse.json({ message: `Cannot find ClerkId from userId: ${id}`})
+    }
+
+    const client = await clerkClient();
+    await client.users.deleteUser(targetUser?.clerkId);
+
     const deletedUser = await prisma.user.delete({
       where: {
-        id: parseInt(id),
-        clerkId: userId
+        id: parseInt(id)
       }
     })
 

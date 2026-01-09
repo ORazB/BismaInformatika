@@ -22,6 +22,8 @@ interface UsersViewPanelProps {
 }
 
 export default function UsersViewPanel({ validUserData }: UsersViewPanelProps) {
+  
+  const [error, setError] = useState<string | null>(null);
 
   const [filteredUsers, setFilteredUsers] = useState(validUserData);
   const [filterRole, setFilterRole] = useState<("ADMIN" | "USER")[]>([
@@ -29,7 +31,7 @@ export default function UsersViewPanel({ validUserData }: UsersViewPanelProps) {
     "USER",
   ]);
 
-  const route = useRouter();
+  const router = useRouter();
 
   useEffect(() => {
     setFilteredUsers(
@@ -45,16 +47,19 @@ export default function UsersViewPanel({ validUserData }: UsersViewPanelProps) {
     );
   }
 
-  async function handleDelete(userId: Number) {
+  async function handleDelete(userId: number) {
     const response = await fetch(`/api/profile/delete?id=${userId}`, {
       method: "DELETE",
     })
 
     if (response.ok) {
-      route.refresh();
+      router.refresh();
     } else {
-      const errorData = await response.json();
-      console.error("Server Error Message:", errorData.error);
+      console.log("FAIL");
+      const data = await response.json();
+      
+      console.log(data);
+      setError(data.error ?? "Something went wrong");
     }
   }
 

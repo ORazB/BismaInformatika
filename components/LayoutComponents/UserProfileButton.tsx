@@ -2,38 +2,47 @@
 
 // Clerk
 import { useUser } from "@clerk/nextjs";
+import type { UserResource } from "@clerk/types";
 
 // Next.js
 import Image from "next/image";
 import Link from "next/link";
 
 // React
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from 'react';
 
-export default function UserProfileButton() {
+export default function UserProfileButton(props: any) {
+  const [clerkUser, setClerkUser] = useState<UserResource | null>(null);
+  const { user, isLoaded } = useUser();
 
-  const { user } = useUser();
-  const [dbUserId, setDbUserId] = useState<number | null>(null);
+  // Use useEffect to set the clerk user
+  useEffect(() => {
+    if (isLoaded && user) {
+      setClerkUser(user);
+    }
+  }, [user, isLoaded]);
 
-  async function fetchDbUserId(clerkId: string) {
-    const res = await fetch(`/api/getUserIdByClerk?clerkId=${clerkId}`);
-    const data = await res.json();
-    return data.id;
+  if (!isLoaded) {
+    return <div><h1>LOADING...</h1></div>
   }
 
-  useEffect(() => {
+  const actingUserPromise = props.user?.actingUser;
 
-    if (!user) return;
-    fetchDbUserId(user.id).then(setDbUserId);
+  if (!actingUserPromise) return <div>No User Data</div>;
 
-  }, [user]);
-
-  if (!user) return null;
+  const rawData = use(actingUserPromise);
+  const userData = typeof rawData === 'string' ? JSON.parse(rawData) : rawData;
 
   return (
     <div>
-      <Link href={`/profile/${dbUserId || ""}`}>
-        <Image src={user.imageUrl || "default-avatar.png"} alt={user.firstName || "User"} width={256} height={256} className="rounded-full object-cover w-11 h-11"></Image>
+      <Link href={`/profile/${userData.id}`}>
+        <Image
+          src={clerkUser?.imageUrl || userData.profileImage}
+          alt={userData.username || userData.username}
+          width={256}
+          height={256}
+          className="rounded-full object-cover w-11 h-11"
+        />
       </Link>
     </div>
   );

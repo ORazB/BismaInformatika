@@ -80,7 +80,7 @@ export default function UsersViewPanel({ validUserData }: UsersViewPanelProps) {
           Add User
         </Link>
         <Link
-          href="/admin/users"
+          href="/admin"
           className="inline-flex items-center rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-text shadow-sm transition-colors hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2"
         >
           <i className="bx bxs-chevron-left text-xl mr-2"></i>

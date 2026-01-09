@@ -1,20 +1,20 @@
 import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
-import { auth, clerkClient } from "@clerk/nextjs/server";
+import { clerkClient, auth } from "@clerk/nextjs/server";
 
 export async function DELETE(req: NextRequest) {
   try {
     const { userId } = await auth();
 
     if (!userId) {
-      return new NextResponse("Unauthorized", { status: 401 })
+      return new NextResponse("Unauthorized", { status: 401 });
     }
 
     const id = req.nextUrl.searchParams.get("id");
 
     if (!id) {
-      return new NextResponse("Missing ID", { status: 400 })
+      return new NextResponse("Missing ID", { status: 400 });
     }
 
     const actingUser = await prisma.user.findUnique({
@@ -25,26 +25,24 @@ export async function DELETE(req: NextRequest) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    const targetUser = await prisma.user.findUnique({
+    const targetUser = await prisma.course.findUnique({
       where: { id: parseInt(id) }
     })
 
     if (!targetUser) {
-      return NextResponse.json({ message: `Cannot find User from userId: ${id}` })
+      return NextResponse.json({ message: `Cannot find Course from id: ${id}` })
     }
 
-    const client = await clerkClient();
-    await client.users.deleteUser(targetUser?.clerkId);
-
-    const deletedUser = await prisma.user.delete({
-      where: {
-        id: parseInt(id)
-      }
+    const deletedUser = await prisma.course.delete({
+      where: { id: parseInt(id) }
     })
 
     return NextResponse.json(deletedUser);
   } catch (error) {
     console.error("DELETE_ERROR: ", error);
-    return new NextResponse("Internal Server Error", { status: 500 })
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
   }
 }

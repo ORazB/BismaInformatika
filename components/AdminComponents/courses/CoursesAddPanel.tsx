@@ -5,35 +5,40 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 // Components
-import ProfileImageInput from "@/components/ProfileComponents/ProfileImageInput";
 import BackButton from "@/components/ProfileComponents/BackButton";
+import CourseImageInput from "./CourseImageInput";
 
-export default function UsersAddPanel() {
+export default function CoursesAddPanel() {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
+
+  const [price, setPrice] = useState<number | "">("");
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const rawValue = e.target.value.replace(/,/g, ""); // remove commas
+    if (/^\d*$/.test(rawValue)) { // only digits allowed
+      setPrice(rawValue === "" ? "" : Number(rawValue));
+    }
+  };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
-
-    const response = await fetch("/api/profile/create", {
+    const response = await fetch("/api/courses/create", {
       method: "POST",
       body: formData,
     });
 
     if (response.ok) {
-      router.push("/admin/users");
+      router.push("/admin/courses");
       router.refresh();
     } else {
       const data = await response.json();
-      
+
       console.log(data);
       setError(data.error ?? "Something went wrong");
-
-      console.log("Current Form Data:", Object.fromEntries(formData.entries()));
     }
-  };
+  }
 
   return (
     <div>
@@ -42,83 +47,65 @@ export default function UsersAddPanel() {
         encType="multipart/form-data"
         onSubmit={handleSubmit}
       >
-        {/* Username */}
+        {/* Title */}
         <div className="flex flex-col gap-2">
-          <label className="text-sm font-medium">Username</label>
+          <label className="text-sm font-medium">Title</label>
+          <input
+            required
+            type="text"
+            name="title"
+            id="title"
+            className="rounded-lg border px-4 py-2 outline-none focus:ring"
+            placeholder="Course Title"
+          />
+        </div>
+
+        {/* Description */}
+        <div className="flex flex-col gap-2">
+          <label className="text-sm font-medium">Description</label>
+          <textarea name="description" id="description" className="rounded-lg border px-4 py-2 outline-none focus:ring"
+            placeholder="Course Description">
+          </textarea>
+        </div>
+
+        {/* Start Date */}
+        <div className="flex flex-col gap-2">
+          <label className="text-sm font-medium">Start Date (optional)</label>
+          <input
+            type="date"
+            name="startDate"
+            id="startDate"
+            className="rounded-lg border px-4 py-2 outline-none focus:ring"
+          />
+        </div>
+
+        {/* End Date */}
+        <div className="flex flex-col gap-2">
+          <label className="text-sm font-medium">End Date (optional)</label>
+          <input
+            type="date"
+            name="endDate"
+            id="endDate"
+            className="rounded-lg border px-4 py-2 outline-none focus:ring"
+          />
+        </div>
+
+        {/* Price */}
+        <div className="flex flex-col gap-2">
+          <label className="text-sm font-medium">Price (Rp)</label>
           <input
             type="text"
-            name="username"
-            id="username"
+            name="price"
+            id="price"
+            value={price === "" ? "" : price.toLocaleString()}
+            onChange={handleChange}
             className="rounded-lg border px-4 py-2 outline-none focus:ring"
-            placeholder="Your username"
+            placeholder="Course Price"
           />
-        </div>
-
-        {/* Password */}
-        <div className="flex flex-col gap-2">
-          <label className="text-sm font-medium">Password</label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            className="rounded-lg border px-4 py-2 outline-none focus:ring"
-            placeholder="Your password"
-          />
-        </div>
-
-        {/* Email */}
-        <div className="flex flex-col gap-2">
-          <label className="text-sm font-medium">Email</label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            className="rounded-lg border px-4 py-2 outline-none focus:ring"
-            placeholder="Your email"
-          />
-        </div>
-
-        {/* Address */}
-        <div className="flex flex-col gap-2">
-          <label className="text-sm font-medium">Address</label>
-          <input
-            type="text"
-            name="address"
-            id="address"
-            className="rounded-lg border px-4 py-2 outline-none focus:ring"
-            placeholder="Your address"
-          />
-        </div>
-
-        {/* Phone Number */}
-        <div className="flex flex-col gap-2">
-          <label className="text-sm font-medium">Phone Number</label>
-          <input
-            type="text"
-            name="phoneNumber"
-            id="phoneNumber"
-            className="rounded-lg border px-4 py-2 outline-none focus:ring"
-            placeholder="Your phone number"
-          />
-        </div>
-
-        {/* Role */}
-        <div className="flex flex-col gap-2">
-          <label htmlFor="role" className="text-sm font-medium">
-            Role
-          </label>
-          <select
-            name="role"
-            id="role"
-            className="rounded-lg border px-4 py-2 outline-none focus:ring"
-          >
-            <option value="ADMIN">ADMIN</option>
-            <option value="USER">USER</option>
-          </select>
         </div>
 
         {/* Profile Image */}
-        <ProfileImageInput initialImageUrl="/profile-page/profile-placeholder.png" />
+        <CourseImageInput />
 
         {error && (
           <div className="rounded-lg border border-red-300 bg-red-50 px-4 py-2 text-sm text-red-700">
@@ -131,11 +118,11 @@ export default function UsersAddPanel() {
           type="submit"
           className="rounded-lg bg-primary px-6 py-2 text-white hover:opacity-90"
         >
-          Add User
+          Add Course
         </button>
 
         <BackButton />
       </form>
     </div>
-  );
+  )
 }

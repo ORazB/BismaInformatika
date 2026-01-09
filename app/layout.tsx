@@ -22,6 +22,10 @@ import {
   SignedIn
 } from "@clerk/nextjs";
 
+import { auth } from "@clerk/nextjs/server";
+import prisma from "@/lib/prisma";
+import { NextResponse } from "next/server";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -47,14 +51,30 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>
+
 ) {
+
+  async function getUserId() {
+    const { userId } = await auth()
+    
+    const user = await prisma.user.findUnique({
+      where: {clerkId: String(userId)}
+    })
+
+    if (!user) {
+      return NextResponse.json({ message: `Cannot find user on by clerkId: ${userId}`}, { status: 401 })
+    }
+    return user
+  }
+
+  const user = getUserId();
 
   return (
     <ClerkProvider>
       <html lang="en">
 
         <body className={`${inter.className} antialiased`}>
-          <Navbar />
+          <Navbar actingUser={user}/>
           {children}
         </body>
       </html>
@@ -62,7 +82,7 @@ export default function RootLayout({
   );
 }
 
-const Navbar = () => {
+const Navbar = (actingUser: any) => {
 
   return (
     <div className="w-full border-b-2 shadow border-zinc-300 bg-background p-2 z-10000 top-0 sticky">
@@ -109,7 +129,7 @@ const Navbar = () => {
 
           <SignedIn>
             <div className="scale-125 cursor-pointer">
-              <UserProfileButton />
+              <UserProfileButton user={actingUser}/>
             </div>
           </SignedIn>
         </div>

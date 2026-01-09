@@ -22,6 +22,8 @@ interface UsersViewPanelProps {
 }
 
 export default function UsersViewPanel({ validUserData }: UsersViewPanelProps) {
+  
+  const [error, setError] = useState<string | null>(null);
 
   const [filteredUsers, setFilteredUsers] = useState(validUserData);
   const [filterRole, setFilterRole] = useState<("ADMIN" | "USER")[]>([
@@ -29,7 +31,7 @@ export default function UsersViewPanel({ validUserData }: UsersViewPanelProps) {
     "USER",
   ]);
 
-  const route = useRouter();
+  const router = useRouter();
 
   useEffect(() => {
     setFilteredUsers(
@@ -45,16 +47,19 @@ export default function UsersViewPanel({ validUserData }: UsersViewPanelProps) {
     );
   }
 
-  async function handleDelete(userId: Number) {
+  async function handleDelete(userId: number) {
     const response = await fetch(`/api/profile/delete?id=${userId}`, {
       method: "DELETE",
     })
 
     if (response.ok) {
-      route.refresh();
+      router.refresh();
     } else {
-      const errorData = await response.json();
-      console.error("Server Error Message:", errorData.error);
+      console.log("FAIL");
+      const data = await response.json();
+      
+      console.log(data);
+      setError(data.error ?? "Something went wrong");
     }
   }
 
@@ -75,7 +80,7 @@ export default function UsersViewPanel({ validUserData }: UsersViewPanelProps) {
           Add User
         </Link>
         <Link
-          href="/admin/users"
+          href="/admin"
           className="inline-flex items-center rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-text shadow-sm transition-colors hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2"
         >
           <i className="bx bxs-chevron-left text-xl mr-2"></i>

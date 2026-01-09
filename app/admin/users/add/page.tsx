@@ -1,5 +1,3 @@
-import { clerkClient } from "@clerk/nextjs/server";
-
 // Components
 import UsersAddPanel from "@/components/AdminComponents/Users/UsersAddPanel";
 

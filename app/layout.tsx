@@ -51,23 +51,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  async function getUserId() {
-    const { userId } = await auth();
-
-    const user = await prisma.user.findUnique({
-      where: { clerkId: String(userId) },
-    });
-
-    if (!user) {
-      return NextResponse.json(
-        { message: `Cannot find user on by clerkId: ${userId}` },
-        { status: 401 }
-      );
-    }
-    return user;
-  }
-
-  const user = getUserId();
 
   async function getUserId() {
     const { userId } = await auth()

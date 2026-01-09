@@ -12,8 +12,8 @@ import { UploadcareSimpleAuthSchema, storeFile } from '@uploadcare/rest-client';
 export async function POST(req: NextRequest) {
 
   const authSchema = new UploadcareSimpleAuthSchema({
-    publicKey: "1b5e557fe4c7659013c8",
-    secretKey: "02949571d91cd4ff816d",
+    publicKey: process.env.UPLOADCARE_PUBLIC_KEY!,
+    secretKey: process.env.UPLOADC_CARE_SECRET!,
   });
 
 

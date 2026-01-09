@@ -19,7 +19,7 @@ import {
   SignInButton,
   SignUpButton,
   SignedOut,
-  SignedIn
+  SignedIn,
 } from "@clerk/nextjs";
 
 import { auth } from "@clerk/nextjs/server";
@@ -50,9 +50,24 @@ export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>
+}>) {
+  async function getUserId() {
+    const { userId } = await auth();
 
-) {
+    const user = await prisma.user.findUnique({
+      where: { clerkId: String(userId) },
+    });
+
+    if (!user) {
+      return NextResponse.json(
+        { message: `Cannot find user on by clerkId: ${userId}` },
+        { status: 401 }
+      );
+    }
+    return user;
+  }
+
+  const user = getUserId();
 
   async function getUserId() {
     const { userId } = await auth()
@@ -72,9 +87,8 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-
         <body className={`${inter.className} antialiased`}>
-          <Navbar actingUser={user}/>
+          <Navbar actingUser={user} />
           {children}
         </body>
       </html>
@@ -83,34 +97,39 @@ export default function RootLayout({
 }
 
 const Navbar = (actingUser: any) => {
-
   return (
     <div className="w-full border-b-2 shadow border-zinc-300 bg-background p-2 z-10000 top-0 sticky">
       <header className="container mx-auto flex justify-between w-4/5 items-center gap-4 h-16">
-
         <nav className="flex items-center gap-8">
           <Link href="/" className="logo">
             <img src="/logos/logo-white.png"></img>
           </Link>
           <ul className="flex gap-10">
             <li>
-              <a className="text-lg hover:underline" href="/">Home</a>
+              <a className="text-lg hover:underline" href="/">
+                Home
+              </a>
             </li>
             <li>
-              <a className="text-lg hover:underline" href="/courses">Courses</a>
+              <a className="text-lg hover:underline" href="/courses">
+                Courses
+              </a>
             </li>
             <li>
-              <a className="text-lg hover:underline" href="/about">About</a>
+              <a className="text-lg hover:underline" href="/about">
+                About
+              </a>
             </li>
             <li>
-              <a className="text-lg hover:underline" href="/contact">Contact Us</a>
+              <a className="text-lg hover:underline" href="/contact">
+                Contact Us
+              </a>
             </li>
           </ul>
         </nav>
 
         <div className="clerk relative">
           <SignedOut>
-
             <SignInButton>
               <button className="px-4 py-2 rounded-lg font-semibold hover:underline cursor-pointer">
                 Login
@@ -124,12 +143,11 @@ const Navbar = (actingUser: any) => {
                 Sign Up
               </button>
             </SignUpButton>
-
           </SignedOut>
 
           <SignedIn>
             <div className="scale-125 cursor-pointer">
-              <UserProfileButton user={actingUser}/>
+              <UserProfileButton user={actingUser} />
             </div>
           </SignedIn>
         </div>

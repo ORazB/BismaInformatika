@@ -13,7 +13,7 @@ export default async function EditProfile({ params }: { params: Promise<{ id: st
   });
 
   return (
-    <section className="m-24">
+    <section className="my-24">
       <div className="container mx-auto max-w-2xl px-8">
         <h1 className="text-text mb-8 text-4xl font-semibold tracking-wide">
           Edit User

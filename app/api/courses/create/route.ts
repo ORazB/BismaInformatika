@@ -4,9 +4,8 @@ import { Decimal } from "@prisma/client/runtime/library";
 import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 
-import { clerkClient, auth } from "@clerk/nextjs/server";
+import { auth } from "@clerk/nextjs/server";
 
-import { UploadClient } from "@uploadcare/upload-client";
 import { UploadcareSimpleAuthSchema, storeFile } from '@uploadcare/rest-client';
 
 export async function POST(req: NextRequest) {
@@ -16,7 +15,6 @@ export async function POST(req: NextRequest) {
     secretKey: process.env.UPLOADC_CARE_SECRET!,
   });
 
-
   try {
     const { userId } = await auth();
 
@@ -24,14 +22,18 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const formData = await req.formData();
     const actingUser = await prisma.user.findUnique({
       where: { clerkId: userId }
     });
+    
+    if (!actingUser) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
 
     /* =======================
     Extract + validate data
     ======================= */
+    const formData = await req.formData();
 
     const title = formData.get("title");
     if (typeof title !== "string") {
@@ -55,15 +57,9 @@ export async function POST(req: NextRequest) {
 
     console.log({ title, description, startDate, endDate, rawPrice, imageUuid });
 
-    const uploadClient = new UploadClient({ publicKey: "1b5e557fe4c7659013c8" })
-
-    if (!uploadClient) {
-      return NextResponse.json({ error: "Invalid Uploadcare API key" }, { status: 500 });
-    }
-
     let storedFileInfo = null;
     if (imageUuid) {
-      const storedFileInfo = await storeFile(
+      storedFileInfo = await storeFile(
         { uuid: imageUuid },
         { authSchema }
       );
@@ -81,7 +77,7 @@ export async function POST(req: NextRequest) {
       }
     })
 
-    revalidatePath("/courses");
+    revalidatePath("/admin/courses");
     return NextResponse.json({ course: createdCourse, storedFileInfo });
 
   } catch (error) {

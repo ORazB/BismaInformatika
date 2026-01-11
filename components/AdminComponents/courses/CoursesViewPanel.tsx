@@ -37,7 +37,7 @@ export default function CoursesViewPanel({
       router.refresh();
       setCourses(courses.filter((course) => course.id !== courseId));
     } else {
-      console.log("FAIL");
+
       const data = await response.json();
       console.log(data);
       setError(data.error ?? "Something went wrong");

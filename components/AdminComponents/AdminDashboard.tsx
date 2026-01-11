@@ -4,9 +4,10 @@ import Link from "next/link"
 
 import { useRouter } from "next/navigation";
 
-export default function AdminDashboard(props: any) {
+import { User } from "@prisma/client";
 
-  const user = props.user;
+export default function AdminDashboard({ user }: { user: User }) {
+
   const router = useRouter();
 
   const adminCards = [
@@ -21,6 +22,12 @@ export default function AdminDashboard(props: any) {
       description: "View and manage user accounts and permissions",
       icon: "bx bxs-group",
       href: "/admin/users",
+    },
+    {
+      title: "Categories",
+      description: "View and manage categories",
+      icon: "bx bxs-folder",
+      href: "/admin/categories",
     }
   ]
 

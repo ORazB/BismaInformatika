@@ -70,7 +70,7 @@ export default function CategoriesAddPanel({ categories }: CategoryProps) {
             className="rounded-lg border px-4 py-2 outline-none focus:ring bg-white"
           >
             <option value="">Select a Category</option>
-            {categories.map((category) => {
+            {categories.filter(category => category.parentId === null).map((category) => {
               return (
                 <option key={category.id} value={category.id}>{`${category.name} | ID:${category.id}`}</option>
               )

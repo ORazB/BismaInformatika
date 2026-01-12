@@ -5,11 +5,7 @@ import CategoriesViewPanel from "@/components/AdminComponents/categories/Categor
 
 export default async function CategoriesPage() {
   
-  const categories = await prisma.category.findMany({
-    orderBy: {
-      name: "asc"
-    }
-  });
+  const categories = await prisma.category.findMany();
   
   return (
     <div className="w-full my-24">

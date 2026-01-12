@@ -19,7 +19,7 @@ export default function CategoriesEditForm({ category, allCategories }: { catego
     
     const formData = new FormData(event.currentTarget);
     
-    const response = await fetch("/api/categories/edit", {
+    const response = await fetch(`/api/categories/edit?id=${category.id}`, {
       method: "POST",
       body: formData
     })
@@ -87,7 +87,7 @@ export default function CategoriesEditForm({ category, allCategories }: { catego
           type="submit"
           className="rounded-lg bg-primary px-6 py-2 text-white hover:opacity-90"
         >
-          Add Course
+          Edit Category
         </button>
 
         <BackButton />

@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
     
     const categoryName = formData.get("name");
     if (typeof categoryName !== "string") {
-      return NextResponse.json({ error: "Title Required" }, { status: 400 });
+      return NextResponse.json({ error: "Category Name Required" }, { status: 400 });
     }
     
     const categoryParent = formData.get("parentId") || null;

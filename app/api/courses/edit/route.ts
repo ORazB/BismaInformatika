@@ -56,6 +56,8 @@ export async function POST(req: NextRequest) {
 
     const startDate = typeof formData.get("startDate") === "string" ? (formData.get("startDate") as string) : null;
     const endDate = typeof formData.get("endDate") === "string" ? (formData.get("endDate") as string) : null;
+    
+    const categoryId = typeof formData.get("category") === "string" ? (formData.get("category") as string) : null;
 
     const rawPrice = formData.get("price");
     let price: Decimal | null = null;
@@ -100,6 +102,7 @@ export async function POST(req: NextRequest) {
         description: description ?? "",
         startDate: startDate ? new Date(startDate).toISOString() : null,
         endDate: endDate ? new Date(endDate).toISOString() : null,
+        categoryId: categoryId ? parseInt(categoryId) : null,
         price: price ?? 0,
         imageUuid: imageUuid ?? ""
       }

@@ -108,12 +108,19 @@ export default function AdminDashboard({ user }: { user: User }) {
             Quick Actions
           </h3>
           <div className="flex flex-wrap gap-3">
-            <button type="button" onClick={() => router.push("/admin/courses/add")} className="px-4 py-2 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors font-medium text-sm">
+            
+            <button type="button" onClick={() => router.push("/admin/courses/add")} className="cursor-pointer px-4 py-2 bg-purple-50 text-primary rounded-lg hover:bg-red-100 transition-colors font-medium text-sm">
               Create New Course
             </button>
-            <button type="button" onClick={() => router.push("/admin/users/add")} className="px-4 py-2 bg-purple-50 text-purple-700 rounded-lg hover:bg-purple-100 transition-colors font-medium text-sm">
+            
+            <button type="button" onClick={() => router.push("/admin/users/add")} className="cursor-pointer px-4 py-2 bg-purple-50 text-primary rounded-lg hover:bg-red-100 transition-colors font-medium text-sm">
               Add New User
             </button>
+            
+            <button type="button" onClick={() => router.push("/admin/categories/add")} className="cursor-pointer px-4 py-2 bg-purple-50 text-primary rounded-lg hover:bg-red-100 transition-colors font-medium text-sm">
+              Add New Category
+            </button>
+            
           </div>
         </div>
       </div>

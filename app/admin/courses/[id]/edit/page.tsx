@@ -13,10 +13,22 @@ export default async function ProfileEditPanel({ params }: { params: Promise<{ i
       id: Number(id)
     }
   })
+  
+  const allCategories = await prisma.category.findMany();
 
-  if (!course) {
+  if (!course || !allCategories) {
     return NextResponse.json({message: "Course not found!"});
   }
+  
+  const serializedCourse = {
+    ...course,
+    price: course.price.toNumber(),
+    // Convert Dates to ISO strings
+    createdAt: course.createdAt.toISOString(),
+    updatedAt: course.updatedAt.toISOString(),
+    startDate: course.startDate ? course.startDate.toISOString() : null,
+    endDate: course.endDate ? course.endDate.toISOString() : null,
+  };
 
   return (
     <section className="m-24">
@@ -25,7 +37,7 @@ export default async function ProfileEditPanel({ params }: { params: Promise<{ i
           Edit Course
         </h1>
 
-        <CoursesEditForm id={course.id} title={course.title} description={course.description} imageUuid={course.imageUuid} startDate={course.startDate ?? null} endDate={course.endDate ?? null} price={Number(course.price)} />
+        <CoursesEditForm course={serializedCourse} categories={allCategories} />
       </div>
     </section>
   )

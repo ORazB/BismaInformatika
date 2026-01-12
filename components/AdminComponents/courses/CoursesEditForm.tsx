@@ -9,26 +9,31 @@ import { useState, useEffect } from "react";
 import CourseImageInput from "./CourseImageInput";
 import BackButton from "@/components/ProfileComponents/BackButton";
 
-interface CoursesEditProps {
+import { Category } from "@prisma/client";
+
+export type SerializedCourse = {
   id: number;
   title: string;
   description: string;
   imageUuid: string;
-  startDate?: Date | null;
-  endDate?: Date | null;
-  price: number | Decimal;
-}
+  categoryId: number | null;
+  startDate: string | null;
+  endDate: string | null;
+  price: number;
+  createdAt: string;
+  updatedAt: string;
+};
 
-export default function CoursesEditPanel({ id, title, description, imageUuid, startDate, endDate, price }: CoursesEditProps) {
+export default function CoursesEditPanel({ course, categories }: { course: SerializedCourse, categories: Category[] }) {
 
   const [error, setError] = useState<string | null>(null);
-  const [rawPrice, setRawPrice] = useState<number | "">(Number(price));
+  const [rawPrice, setRawPrice] = useState<number | "">(Number(course.price));
 
   const router = useRouter();
 
   useEffect(() => {
-    setRawPrice(Number(price));
-  }, [price]);
+    setRawPrice(Number(course.price));
+  }, [course.price]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const rawValue = e.target.value.replace(/,/g, ""); // remove commas
@@ -42,7 +47,7 @@ export default function CoursesEditPanel({ id, title, description, imageUuid, st
 
     const formData = new FormData(event.currentTarget);
 
-    const response = await fetch(`/api/courses/edit?id=${id}`, {
+    const response = await fetch(`/api/courses/edit?id=${course.id}`, {
       method: "POST",
       body: formData
     });
@@ -75,14 +80,14 @@ export default function CoursesEditPanel({ id, title, description, imageUuid, st
             id="title"
             className="rounded-lg border px-4 py-2 outline-none focus:ring"
             placeholder="Course Title"
-            defaultValue={title}
+            defaultValue={course.title}
           />
         </div>
 
         {/* Description */}
         <div className="flex flex-col gap-2">
           <label className="text-sm font-medium">Description</label>
-          <textarea defaultValue={description} name="description" id="description" className="rounded-lg border px-4 py-2 outline-none focus:ring"
+          <textarea defaultValue={course.description} name="description" id="description" className="rounded-lg border px-4 py-2 outline-none focus:ring"
             placeholder="Course Description">
           </textarea>
         </div>
@@ -91,7 +96,7 @@ export default function CoursesEditPanel({ id, title, description, imageUuid, st
         <div className="flex flex-col gap-2">
           <label className="text-sm font-medium">Start Date (optional)</label>
           <input
-            defaultValue={startDate ? new Date(startDate).toISOString().split('T')[0] : ''}
+            defaultValue={course.startDate ? new Date(course.startDate).toISOString().split('T')[0] : ''}
             type="date"
             name="startDate"
             id="startDate"
@@ -103,12 +108,29 @@ export default function CoursesEditPanel({ id, title, description, imageUuid, st
         <div className="flex flex-col gap-2">
           <label className="text-sm font-medium">End Date (optional)</label>
           <input
-            defaultValue={endDate ? new Date(endDate).toISOString().split('T')[0] : ''}
+            defaultValue={course.endDate ? new Date(course.endDate).toISOString().split('T')[0] : ''}
             type="date"
             name="endDate"
             id="endDate"
             className="rounded-lg border px-4 py-2 outline-none focus:ring"
           />
+        </div>
+        
+        {/* Category */}
+        <div className="flex flex-col gap-2">
+          <label className="text-sm font-medium">Category</label>
+          <select id="category" name="category" className="rounded-lg border px-4 py-2 outline-none focus:ring" >
+            <option value="">
+              {categories.find(c => c.id === course.categoryId)?.name || "Select Category"}
+            </option>
+            {categories
+              .filter(category => category.id !== course.categoryId)
+              .map(category => (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              ))}
+          </select>
         </div>
 
         {/* Price */}
@@ -126,7 +148,7 @@ export default function CoursesEditPanel({ id, title, description, imageUuid, st
         </div>
 
         {/* Profile Image */}
-        <CourseImageInput initialImage={imageUuid} />
+        <CourseImageInput initialImage={course.imageUuid} />
 
         {error && (
           <div className="rounded-lg border border-red-300 bg-red-50 px-4 py-2 text-sm text-red-700">

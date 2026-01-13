@@ -26,7 +26,7 @@ export default async function CourseAdminPage() {
 
   return (
     <div className="w-full">
-      <div className="m-24">
+      <div className="m-28">
         <CoursesViewPanel validCourseData={coursesWithImages} categories={allCategories}/>
       </div>
     </div>

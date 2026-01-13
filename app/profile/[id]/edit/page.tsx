@@ -1,16 +1,45 @@
 import prisma from "@/lib/prisma";
+import { clerkClient } from "@clerk/nextjs/server";
+
 // Components
 import ProfileEditForm from "@/components/ProfileComponents/ProfileEditForm";
 
 export default async function EditProfile({ params }: { params: Promise<{ id: string }> }) {
 
   const { id } = await params;
+  
+  const client = await clerkClient();
+  
+  if (!id) {
+    return <div>Invalid ID</div>;
+  }
+  
   // Fetch User Data
   const user = await prisma.user.findUnique({
     where: {
       id: Number(id),
     },
   });
+  
+  if (!user) {
+    return <div>User not found</div>;
+  }
+  
+  const clerkUser = await client.users.getUser(user.clerkId);
+  
+  const actingUser = await prisma.user.findUnique({
+    where: {
+      clerkId: clerkUser.id
+    }
+  })
+  
+  if (!actingUser) {
+    return <div>Unauthorized</div>;
+  }
+  
+  if (actingUser.id !== parseInt(id) && actingUser.role !== "ADMIN") {
+    return <div>Unauthorized</div>;
+  }
 
   return (
     <section className="my-24">

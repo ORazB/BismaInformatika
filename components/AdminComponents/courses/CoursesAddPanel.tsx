@@ -96,7 +96,7 @@ export default function CoursesAddPanel({categories}: {categories: Category[]}) 
         <div className="flex flex-col gap-2">
           <label className="text-sm font-medium">Category</label>
           <select id="category" name="category" className="rounded-lg border px-4 py-2 outline-none focus:ring" >
-            <option selected>Select Category</option>
+            <option defaultChecked>Select Category</option>
             {categories.map(category => (
                 <option key={category.id} value={category.id}>
                   {category.name}

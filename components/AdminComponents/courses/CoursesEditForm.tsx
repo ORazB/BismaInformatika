@@ -127,9 +127,9 @@ export default function CoursesEditPanel({ course, categories }: { course: Seria
               .filter(category => category.id !== course.categoryId)
               .map(category => (
                 <option key={category.id} value={category.id}>
-                  {category.name}
+                  {category.parentId ? `> ${category.name}` : category.name}
                 </option>
-              ))}
+            ))}
           </select>
         </div>
 

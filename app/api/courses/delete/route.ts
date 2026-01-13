@@ -1,7 +1,7 @@
 import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
-import { clerkClient, auth } from "@clerk/nextjs/server";
+import { auth } from "@clerk/nextjs/server";
 
 import { UploadcareSimpleAuthSchema, deleteFile } from '@uploadcare/rest-client';
 

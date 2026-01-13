@@ -23,7 +23,7 @@ export default function Contact() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 lg:gap-6">
               {/* Call Us Card */}
               <div className="bg-white grid md:place-items-start place-items-center p-6 rounded-2xl border border-gray-200 shadow-sm">
-                <div className="w-12 h-12 rounded-full bg-red-700 flex items-center justify-center mb-4">
+                <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-white"
                     fill="currentColor"
@@ -48,7 +48,7 @@ export default function Contact() {
 
               {/* Email Us Card */}
               <div className="bg-white md:place-items-start place-items-center p-6 rounded-2xl border border-gray-200 shadow-sm">
-                <div className="w-12 h-12 rounded-full bg-red-700 flex items-center justify-center mb-4">
+                <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-white"
                     fill="currentColor"
@@ -73,7 +73,7 @@ export default function Contact() {
 
               {/* Visit Us Card */}
               <div className="bg-white md:place-items-start place-items-center p-6 rounded-2xl border border-gray-200 shadow-sm">
-                <div className="w-12 h-12 rounded-full bg-red-700 flex items-center justify-center mb-4">
+                <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-white"
                     fill="currentColor"
@@ -98,7 +98,7 @@ export default function Contact() {
 
               {/* Chat With Us Card */}
               <div className="bg-white md:place-items-start place-items-center p-6 rounded-2xl border border-gray-200 shadow-sm">
-                <div className="w-12 h-12 rounded-full bg-red-700 flex items-center justify-center mb-4">
+                <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-white"
                     fill="currentColor"
@@ -207,7 +207,7 @@ export default function Contact() {
                   </label>
                   <button
                     type="submit"
-                    className="w-full px-6 py-3 bg-red-700 text-white font-semibold rounded-lg hover:bg-red-800 transition-colors"
+                    className="w-full px-6 py-3 bg-primary text-white font-semibold rounded-lg transition-colors"
                   >
                     Submit
                   </button>

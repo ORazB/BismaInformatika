@@ -6,7 +6,6 @@ import { revalidatePath } from "next/cache";
 
 import { auth } from "@clerk/nextjs/server";
 
-import { UserRole } from "@prisma/client";
 
 import { UploadcareSimpleAuthSchema, storeFile, deleteFile } from '@uploadcare/rest-client';
 
@@ -74,7 +73,7 @@ export async function POST(req: NextRequest) {
     // Store Course Image
     let storedFileInfo = null;
     if (imageUuid) {
-      const storedFileInfo = await storeFile(
+      storedFileInfo = await storeFile(
         { uuid: imageUuid },
         { authSchema }
       )
@@ -84,7 +83,7 @@ export async function POST(req: NextRequest) {
     // Delete old Course Image
     let deletedFileInfo = null;
     if (course.imageUuid != imageUuid) {
-      const deletedFileInfo = await deleteFile(
+      deletedFileInfo = await deleteFile(
         { uuid: course.imageUuid },
         { authSchema }
       )

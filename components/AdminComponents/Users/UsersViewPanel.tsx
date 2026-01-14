@@ -3,19 +3,10 @@
 import Image from "next/image"
 import Link from "next/link"
 
+import { User } from "@prisma/client";
 import { useRouter } from "next/navigation"
 
-import { useState, useEffect } from "react"
-
-interface User {
-  id: number;
-  username: string;
-  email: string;
-  displayImage?: string;
-  phoneNumber?: string;
-  address?: string;
-  role: "ADMIN" | "USER" | string;
-}
+import { useState } from "react"
 
 interface UsersViewPanelProps {
   validUserData: User[];
@@ -23,9 +14,6 @@ interface UsersViewPanelProps {
 
 export default function UsersViewPanel({ validUserData }: UsersViewPanelProps) {
   
-  const [error, setError] = useState<string | null>(null);
-
-  const [filteredUsers, setFilteredUsers] = useState(validUserData);
   const [filterRole, setFilterRole] = useState<("ADMIN" | "USER")[]>([
     "ADMIN",
     "USER",
@@ -33,11 +21,9 @@ export default function UsersViewPanel({ validUserData }: UsersViewPanelProps) {
 
   const router = useRouter();
 
-  useEffect(() => {
-    setFilteredUsers(
-      validUserData.filter((user) => filterRole.includes(user.role as "ADMIN" | "USER"))
-    );
-  }, [filterRole, validUserData]);  
+  const filteredUsers = validUserData.filter((user) => 
+    filterRole.includes(user.role as "ADMIN" | "USER")
+  );
 
   function handleFilter(role: "ADMIN" | "USER") {
     setFilterRole((prev) =>
@@ -59,7 +45,7 @@ export default function UsersViewPanel({ validUserData }: UsersViewPanelProps) {
       const data = await response.json();
       
       console.log(data);
-      setError(data.error ?? "Something went wrong");
+      console.log(data.error ?? "Something went wrong");
     }
   }
 
@@ -136,7 +122,7 @@ export default function UsersViewPanel({ validUserData }: UsersViewPanelProps) {
                     <div className="flex items-center">
                       <div className="h-10 w-10 shrink-0">
                         <Image
-                          src={user.displayImage || "/default-avatar.png"}
+                          src={user.profileImage || "/default-avatar.png"}
                           alt={user.username || "User"}
                           width={40}
                           height={40}

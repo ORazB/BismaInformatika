@@ -10,6 +10,7 @@ import NewsLetter from "@/components/LayoutComponents/NewsLetter"
 export default function Home() {
   return (
     <div className="w-full">
+    
       {/* Hero Slide */}
       <section className="flex w-full bg-primary overflow-hidden">
         <div className="container mx-auto px-8">
@@ -91,6 +92,7 @@ export default function Home() {
                 </p>
               </div>
             </div>
+            
 
             <div className="feature__item flex items-center justify-center gap-6">
               <div className="feature__icon">

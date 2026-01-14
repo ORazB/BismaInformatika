@@ -1,24 +1,44 @@
 "use client";
-
+import { Decimal } from "@prisma/client/runtime/library";
+import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // Components
-import BackButton from "@/components/ProfileComponents/BackButton";
 import CourseImageInput from "./CourseImageInput";
+import BackButton from "@/components/ProfileComponents/BackButton";
 
 import { Category } from "@prisma/client";
 
-export default function CoursesAddPanel({categories}: {categories: Category[]}) {
-  const router = useRouter();
-  const [error, setError] = useState<string | null>(null);
+export type SerializedCourse = {
+  id: number;
+  title: string;
+  description: string;
+  imageUuid: string;
+  categoryId: number | null;
+  startDate: string | null;
+  endDate: string | null;
+  price: number;
+  createdAt: string;
+  updatedAt: string;
+};
 
-  const [price, setPrice] = useState<number | "">("");
+export default function CoursesEditPanel({ course, categories }: { course: SerializedCourse, categories: Category[] }) {
+
+  const [error, setError] = useState<string | null>(null);
+  const [rawPrice, setRawPrice] = useState<number | "">(Number(course.price));
+
+  const router = useRouter();
+
+  useEffect(() => {
+    setRawPrice(Number(course.price));
+  }, [course.price]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const rawValue = e.target.value.replace(/,/g, ""); // remove commas
     if (/^\d*$/.test(rawValue)) { // only digits allowed
-      setPrice(rawValue === "" ? "" : Number(rawValue));
+      setRawPrice(rawValue === "" ? "" : Number(rawValue));
     }
   };
 
@@ -26,19 +46,20 @@ export default function CoursesAddPanel({categories}: {categories: Category[]}) 
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
-    const response = await fetch("/api/courses/create", {
+
+    const response = await fetch(`/api/courses/edit?id=${course.id}`, {
       method: "POST",
-      body: formData,
+      body: formData
     });
 
     if (response.ok) {
-      router.push("/admin/courses");
       router.refresh();
+      router.push("/admin/courses")
     } else {
-      const data = await response.json();
+      const errorData = await response.json();
 
-      console.log(data);
-      setError(data.error ?? "Something went wrong");
+      console.error("Server Errror Message: ", errorData.error);
+      console.log("Current Form Data:", Object.fromEntries(formData.entries()));
     }
   }
 
@@ -59,13 +80,14 @@ export default function CoursesAddPanel({categories}: {categories: Category[]}) 
             id="title"
             className="rounded-lg border px-4 py-2 outline-none focus:ring"
             placeholder="Course Title"
+            defaultValue={course.title}
           />
         </div>
 
         {/* Description */}
         <div className="flex flex-col gap-2">
           <label className="text-sm font-medium">Description</label>
-          <textarea name="description" id="description" className="rounded-lg border px-4 py-2 outline-none focus:ring"
+          <textarea defaultValue={course.description} name="description" id="description" className="rounded-lg border px-4 py-2 outline-none focus:ring"
             placeholder="Course Description">
           </textarea>
         </div>
@@ -74,6 +96,7 @@ export default function CoursesAddPanel({categories}: {categories: Category[]}) 
         <div className="flex flex-col gap-2">
           <label className="text-sm font-medium">Start Date (optional)</label>
           <input
+            defaultValue={course.startDate ? new Date(course.startDate).toISOString().split('T')[0] : ''}
             type="date"
             name="startDate"
             id="startDate"
@@ -85,6 +108,7 @@ export default function CoursesAddPanel({categories}: {categories: Category[]}) 
         <div className="flex flex-col gap-2">
           <label className="text-sm font-medium">End Date (optional)</label>
           <input
+            defaultValue={course.endDate ? new Date(course.endDate).toISOString().split('T')[0] : ''}
             type="date"
             name="endDate"
             id="endDate"
@@ -96,12 +120,16 @@ export default function CoursesAddPanel({categories}: {categories: Category[]}) 
         <div className="flex flex-col gap-2">
           <label className="text-sm font-medium">Category</label>
           <select id="category" name="category" className="rounded-lg border px-4 py-2 outline-none focus:ring" >
-            <option defaultChecked>Select Category</option>
-            {categories.map(category => (
+            <option value="">
+              {categories.find(c => c.id === course.categoryId)?.name || "Select Category"}
+            </option>
+            {categories
+              .filter(category => category.id !== course.categoryId)
+              .map(category => (
                 <option key={category.id} value={category.id}>
-                  {category.name}
+                  {category.parentId ? `> ${category.name}` : category.name}
                 </option>
-              ))}
+            ))}
           </select>
         </div>
 
@@ -112,7 +140,7 @@ export default function CoursesAddPanel({categories}: {categories: Category[]}) 
             type="text"
             name="price"
             id="price"
-            value={price === "" ? "" : price.toLocaleString()}
+            value={rawPrice === "" ? "" : Number(rawPrice).toLocaleString()}
             onChange={handleChange}
             className="rounded-lg border px-4 py-2 outline-none focus:ring"
             placeholder="Course Price"
@@ -120,7 +148,7 @@ export default function CoursesAddPanel({categories}: {categories: Category[]}) 
         </div>
 
         {/* Profile Image */}
-        <CourseImageInput initialImage={""}/>
+        <CourseImageInput initialImage={course.imageUuid} />
 
         {error && (
           <div className="rounded-lg border border-red-300 bg-red-50 px-4 py-2 text-sm text-red-700">
@@ -133,7 +161,7 @@ export default function CoursesAddPanel({categories}: {categories: Category[]}) 
           type="submit"
           className="rounded-lg bg-primary px-6 py-2 text-white hover:opacity-90"
         >
-          Add Course
+          Edit Course
         </button>
 
         <BackButton />

@@ -3,14 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { auth } from "@clerk/nextjs/server";
 
-import { UploadcareSimpleAuthSchema, deleteFile } from '@uploadcare/rest-client';
-
 export async function DELETE(req: NextRequest) {
-
-  const authSchema = new UploadcareSimpleAuthSchema({
-    publicKey: process.env.UPLOADCARE_PUBLIC_KEY!,
-    secretKey: process.env.UPLOADC_CARE_SECRET!,
-  });
 
   try {
     const { userId } = await auth();
@@ -29,30 +22,33 @@ export async function DELETE(req: NextRequest) {
       where: { clerkId: userId }
     })
 
-    if (actingUser?.role !== "ADMIN") {
+    if (!actingUser) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    const targetCourse = await prisma.course.findUnique({
-      where: { id: parseInt(id) }
-    })
+    const targetUserCourse = await prisma.userCourse.findUnique({
+      where: {
+        userId_courseId: {
+          courseId: parseInt(id),
+          userId: actingUser.id,
+        },
+      },
+    });
 
-    if (!targetCourse) {
+    if (!targetUserCourse) {
       return NextResponse.json({ message: `Cannot find Course from id: ${id}` })
     }
 
-    if (targetCourse.imageUuid) {
-      await deleteFile(
-        { uuid: targetCourse.imageUuid },
-        { authSchema }
-      )
-    }
-
-    const deletedCourse = await prisma.course.delete({
-      where: { id: parseInt(id) }
+    const deletedUserCourse = await prisma.userCourse.delete({
+      where: { 
+        userId_courseId: { 
+          courseId: parseInt(id), 
+          userId: actingUser.id
+        }
+      }
     })
 
-    return NextResponse.json(deletedCourse);
+    return NextResponse.json(deletedUserCourse);
   } catch (error) {
     console.error("DELETE_ERROR: ", error);
     return NextResponse.json(

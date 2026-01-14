@@ -6,7 +6,8 @@ import { revalidatePath } from "next/cache";
 
 import { auth } from "@clerk/nextjs/server";
 
-import { UploadcareSimpleAuthSchema, storeFile } from '@uploadcare/rest-client';
+
+import { UploadcareSimpleAuthSchema, storeFile, deleteFile } from '@uploadcare/rest-client';
 
 export async function POST(req: NextRequest) {
 
@@ -19,21 +20,31 @@ export async function POST(req: NextRequest) {
     const { userId } = await auth();
 
     if (!userId) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
-    const actingUser = await prisma.user.findUnique({
+    const formData = await req.formData();
+    const id = req.nextUrl.searchParams.get("id");
+
+    if (!id) {
+      return NextResponse.json({ error: "Missing user id" }, { status: 400 });
+    }
+
+    const actingUser = prisma.user.findUnique({
       where: { clerkId: userId }
+    })
+
+    const course = await prisma.course.findUnique({
+      where: { id: Number(id) },
     });
-    
-    if (!actingUser) {
+
+    if (!actingUser || !course) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     /* =======================
     Extract + validate data
     ======================= */
-    const formData = await req.formData();
 
     const title = formData.get("title");
     if (typeof title !== "string") {
@@ -59,16 +70,32 @@ export async function POST(req: NextRequest) {
 
     console.log({ title, description, startDate, endDate, rawPrice, imageUuid });
 
+    // Store Course Image
     let storedFileInfo = null;
     if (imageUuid) {
       storedFileInfo = await storeFile(
         { uuid: imageUuid },
         { authSchema }
-      );
-      console.log("File stored permanently:", storedFileInfo);
-    }  
+      )
+      console.log("File Stored Permanently: ", storedFileInfo)
+    }
 
-    const createdCourse = await prisma.course.create({
+    // Delete old Course Image
+    let deletedFileInfo = null;
+    if (course.imageUuid != imageUuid) {
+      deletedFileInfo = await deleteFile(
+        { uuid: course.imageUuid },
+        { authSchema }
+      )
+      console.log("File Deleted Permanently: ", deletedFileInfo)
+    }
+
+    /* =======================
+    Database update
+    ======================= */
+
+    const updatedCourse = await prisma.course.update({
+      where: { id: course.id },
       data: {
         title,
         description: description ?? "",
@@ -81,10 +108,10 @@ export async function POST(req: NextRequest) {
     })
 
     revalidatePath("/admin/courses");
-    return NextResponse.json({ course: createdCourse, storedFileInfo });
+    return NextResponse.json({ course: updatedCourse, storedFileInfo, deletedFileInfo });
 
   } catch (error) {
-    console.error("Critical Route Error: ", error);
+    console.error("Critical Route Error:", error);
     return NextResponse.json({ error: "Server Error" }, { status: 500 });
   }
 }

@@ -53,6 +53,10 @@ export default async function RootLayout({
 }>) {
   async function getUser() {
     const { userId } = await auth();
+    
+    if (!userId) {
+      return null;
+    }
 
     if (!userId) {
       return null;

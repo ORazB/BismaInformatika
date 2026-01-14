@@ -5,22 +5,29 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 
+import { Category } from "@prisma/client";
+
 interface Course {
   id: number;
   title: string;
+  categoryId: number | null;
+  createdAt: Date;
+  updatedAt: Date;
   description: string;
   imageUuid: string;
-  startDate: Date;
-  endDate: Date;
-  price: number | Decimal;
+  startDate: Date | null;
+  endDate: Date | null;
+  price: number;
 }
 
 interface CoursesViewPanelProps {
   validCourseData: Course[];
+  categories: Category[];
 }
 
 export default function CoursesViewPanel({
   validCourseData,
+  categories,
 }: CoursesViewPanelProps) {
   const [error, setError] = useState<string | null>(null);
   const [courses, setCourses] = useState<Course[]>(validCourseData);
@@ -37,7 +44,6 @@ export default function CoursesViewPanel({
       router.refresh();
       setCourses(courses.filter((course) => course.id !== courseId));
     } else {
-      console.log("FAIL");
       const data = await response.json();
       console.log(data);
       setError(data.error ?? "Something went wrong");
@@ -128,11 +134,29 @@ export default function CoursesViewPanel({
               <div className="space-y-1 mb-4">
                 <div className="flex items-center text-sm text-gray-500">
                   <i className="bx bx-calendar mr-2"></i>
-                  <span>Start: {formatDate(course.startDate)}</span>
+                  <span>
+                    Start:{" "}
+                    {course.startDate ? formatDate(course.startDate) : "N/A"}
+                  </span>
                 </div>
                 <div className="flex items-center text-sm text-gray-500">
                   <i className="bx bx-calendar-check mr-2"></i>
-                  <span>End: {formatDate(course.endDate)}</span>
+                  <span>
+                    End: {course.endDate ? formatDate(course.endDate) : "N/A"}
+                  </span>
+                </div>
+              </div>
+
+              {/* Category */}
+              <div className="space-y-1 mb-4">
+                <div className="flex items-center text-sm text-gray-500">
+                  <i className="bx bx-calendar mr-2"></i>
+                  <span>
+                    Category:{" "}
+                    {categories.find(
+                      (category) => category.id === course.categoryId,
+                    )?.name || "N/A"}
+                  </span>
                 </div>
               </div>
 

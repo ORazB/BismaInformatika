@@ -8,7 +8,9 @@ import { useState } from "react";
 import BackButton from "@/components/ProfileComponents/BackButton";
 import CourseImageInput from "./CourseImageInput";
 
-export default function CoursesAddPanel() {
+import { Category } from "@prisma/client";
+
+export default function CoursesAddPanel({categories}: {categories: Category[]}) {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
 
@@ -89,6 +91,19 @@ export default function CoursesAddPanel() {
             className="rounded-lg border px-4 py-2 outline-none focus:ring"
           />
         </div>
+        
+        {/* Category */}
+        <div className="flex flex-col gap-2">
+          <label className="text-sm font-medium">Category</label>
+          <select id="category" name="category" className="rounded-lg border px-4 py-2 outline-none focus:ring" >
+            <option defaultChecked>Select Category</option>
+            {categories.map(category => (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              ))}
+          </select>
+        </div>
 
         {/* Price */}
         <div className="flex flex-col gap-2">
@@ -105,7 +120,7 @@ export default function CoursesAddPanel() {
         </div>
 
         {/* Profile Image */}
-        <CourseImageInput />
+        <CourseImageInput initialImage={""}/>
 
         {error && (
           <div className="rounded-lg border border-red-300 bg-red-50 px-4 py-2 text-sm text-red-700">

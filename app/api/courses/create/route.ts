@@ -4,18 +4,16 @@ import { Decimal } from "@prisma/client/runtime/library";
 import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 
-import { clerkClient, auth } from "@clerk/nextjs/server";
+import { auth } from "@clerk/nextjs/server";
 
-import { UploadClient } from "@uploadcare/upload-client";
 import { UploadcareSimpleAuthSchema, storeFile } from '@uploadcare/rest-client';
 
 export async function POST(req: NextRequest) {
 
   const authSchema = new UploadcareSimpleAuthSchema({
-    publicKey: "1b5e557fe4c7659013c8",
-    secretKey: "02949571d91cd4ff816d",
+    publicKey: process.env.UPLOADCARE_PUBLIC_KEY!,
+    secretKey: process.env.UPLOADC_CARE_SECRET!,
   });
-
 
   try {
     const { userId } = await auth();
@@ -24,14 +22,18 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const formData = await req.formData();
     const actingUser = await prisma.user.findUnique({
       where: { clerkId: userId }
     });
+    
+    if (!actingUser) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
 
     /* =======================
     Extract + validate data
     ======================= */
+    const formData = await req.formData();
 
     const title = formData.get("title");
     if (typeof title !== "string") {
@@ -42,6 +44,8 @@ export async function POST(req: NextRequest) {
 
     const startDate = typeof formData.get("startDate") === "string" ? (formData.get("startDate") as string) : null;
     const endDate = typeof formData.get("endDate") === "string" ? (formData.get("endDate") as string) : null;
+    
+    const categoryId = typeof formData.get("category") === "string" ? (formData.get("category") as string) : null;
 
     const rawPrice = formData.get("price");
     let price: Decimal | null = null;
@@ -55,15 +59,9 @@ export async function POST(req: NextRequest) {
 
     console.log({ title, description, startDate, endDate, rawPrice, imageUuid });
 
-    const uploadClient = new UploadClient({ publicKey: "1b5e557fe4c7659013c8" })
-
-    if (!uploadClient) {
-      return NextResponse.json({ error: "Invalid Uploadcare API key" }, { status: 500 });
-    }
-
     let storedFileInfo = null;
     if (imageUuid) {
-      const storedFileInfo = await storeFile(
+      storedFileInfo = await storeFile(
         { uuid: imageUuid },
         { authSchema }
       );
@@ -76,12 +74,13 @@ export async function POST(req: NextRequest) {
         description: description ?? "",
         startDate: startDate ? new Date(startDate).toISOString() : null,
         endDate: endDate ? new Date(endDate).toISOString() : null,
+        categoryId: categoryId ? parseInt(categoryId) : null,
         price: price ?? 0,
         imageUuid: imageUuid ?? ""
       }
     })
 
-    revalidatePath("/courses");
+    revalidatePath("/admin/courses");
     return NextResponse.json({ course: createdCourse, storedFileInfo });
 
   } catch (error) {

@@ -1,12 +1,15 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState, useEffect } from "react";
 import { FileUploaderRegular } from "@uploadcare/react-uploader/next";
 import "@uploadcare/react-uploader/core.css";
 
-export default function CourseImageInput() {
+export default function CourseImageInput({ initialImage }: { initialImage: string }) {
   const [fileUuid, setFileUuid] = useState<string | null>(null);
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    setFileUuid(initialImage);
+  }, [initialImage])
 
   const triggerUploaderClick = () => {
     // Find the uploadCare button because this api sucks it doesn't even have a function to re open it LOL
@@ -28,15 +31,18 @@ export default function CourseImageInput() {
           if (!file) return;
 
           setFileUuid(file.uuid);
-          setPreviewUrl(file.cdnUrl);
         }}
       />
 
       {/* Preview image to re-trigger uploadcare */}
-      {previewUrl && (
+      {fileUuid && (
         <div className="w-48 cursor-pointer" onClick={triggerUploaderClick}>
           <img
-            src={`${previewUrl}-/resize/400x400/-/format/webp/`}
+            src={
+              fileUuid
+                ? `https://63hy5293v3.ucarecd.net/${fileUuid}/-/preview/736x736/`
+                : "/course-page/course-placeholder.png"
+            }
             alt="Course preview"
             className="rounded-lg border object-cover"
           />

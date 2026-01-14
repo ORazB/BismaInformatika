@@ -36,8 +36,9 @@ export default function UserProfileButton(props: any) {
   return (
     <div>
       <Link href={`/profile/${userData.id}`}>
+
         <Image
-          src={clerkUser?.imageUrl || userData.profileImage}
+          src={clerkUser?.imageUrl || "/default-avatar.png"}
           alt={userData.username || userData.username}
           width={256}
           height={256}

@@ -26,7 +26,6 @@ import { auth } from "@clerk/nextjs/server";
 import prisma from "@/lib/prisma";
 import { User } from "@prisma/client";
 
-
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
 //   subsets: ["latin"],
@@ -59,6 +58,10 @@ export default async function RootLayout({
       return null;
     }
 
+    if (!userId) {
+      return null;
+    }
+
     const user = await prisma.user.findUnique({
       where: { clerkId: String(userId) },
     });
@@ -85,66 +88,128 @@ export default async function RootLayout({
 
 const Navbar = ({ actingUser }: { actingUser: User | null }) => {
   return (
-    <div className="w-full border-b-2 shadow border-zinc-300 bg-background p-2 z-10000 top-0 sticky">
-      <header className="container mx-auto flex justify-between w-4/5 items-center gap-4 h-16">
-        <nav className="flex items-center gap-8">
-          <Link href="/" className="logo">
-            <Image
-              alt="bisma-informatika-logo"
-              width={500}
-              height={500}
-              className="w-[200px] h-[-200px]"
+    <div className="w-full shadow bg-background sticky top-0 z-50">
+      <input
+        type="checkbox"
+        id="menu-toggle"
+        className="peer hidden md:hidden"
+      />
+      {/* Mode Desktop & Tablet */}
+      <header className="container mx-auto hidden md:flex items-center justify-between h-16 px-4">
+        {/* LEFT: LOGO + MENU */}
+        <div className="flex items-center gap-10">
+          <a href="/" className="flex items-center gap-2">
+            <img
               src="/logos/logo-white.png"
-            ></Image>
-          </Link>
-          <ul className="flex gap-10">
-            <li>
-              <a className="text-lg hover:underline" href="/">
-                Home
-              </a>
-            </li>
-            <li>
-              <a className="text-lg hover:underline" href="/courses">
-                Courses
-              </a>
-            </li>
-            <li>
-              <a className="text-lg hover:underline" href="/about">
-                About
-              </a>
-            </li>
-            <li>
-              <a className="text-lg hover:underline" href="/contact">
-                Contact Us
-              </a>
-            </li>
-          </ul>
-        </nav>
+              alt="Bisma Informatika"
+              className="h-8 w-auto"
+            />
+          </a>
 
-        <div className="clerk relative">
-          <SignedOut>
-            <SignInButton>
-              <button className="px-4 py-2 rounded-lg font-semibold hover:underline cursor-pointer">
-                Login
-              </button>
-            </SignInButton>
+          <nav>
+            <ul className="flex items-center gap-8">
+              <li>
+                <a href="/" className="font-medium hover:underline">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="/courses" className="font-medium hover:underline">
+                  Courses
+                </a>
+              </li>
+              <li>
+                <a href="/about" className="font-medium hover:underline">
+                  About
+                </a>
+              </li>
+              <li>
+                <a href="/contact" className="font-medium hover:underline">
+                  Contact Us
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
 
-            <div className="line absolute w-0.5 bottom-0 right-22 h-3/4 bg-black"></div>
-
-            <SignUpButton>
-              <button className="px-4 py-2 rounded-lg font-semibold hover:underline cursor-pointer">
-                Sign Up
-              </button>
-            </SignUpButton>
-          </SignedOut>
-
-          <SignedIn>
-            <div className="scale-125 cursor-pointer">
-              {actingUser && <UserProfileButton user={actingUser} />}
-            </div>
-          </SignedIn>
+        {/* Right Auth*/}
+        <div className="flex items-center gap-3">
+          <a href="/login" className="font-medium hover:underline">
+            Login
+          </a>
+          <span className="text-gray-400">|</span>
+          <a href="/register" className="font-medium hover:underline">
+            Register
+          </a>
         </div>
       </header>
+
+      {/* Mobile Header */}
+      <header className="container mx-auto flex md:hidden items-center justify-between h-16 px-4">
+        {/* Logo */}
+        <a href="/">
+          <img
+            src="/logos/logo-white.png"
+            alt="Bisma Informatika"
+            className="h-8 w-auto"
+          />
+        </a>
+
+        {/* Hamburger */}
+        <label
+          htmlFor="menu-toggle"
+          className="cursor-pointer flex flex-col gap-1 mr-2
+          transition-transform duration-200 active:scale-95"
+        >
+          <span className="block w-6 h-0.5 bg-black transition-all duration-300"></span>
+          <span className="block w-6 h-0.5 bg-black transition-all duration-300"></span>
+          <span className="block w-6 h-0.5 bg-black transition-all duration-300"></span>
+        </label>
+      </header>
+
+      {/* Mobile Menu Animation*/}
+      <div
+        className="md:hidden
+        max-h-0 opacity-0 -translate-y-2
+        overflow-hidden
+        transition-all duration-300 ease-out
+        peer-checked:max-h-[500px]
+        peer-checked:opacity-100
+        peer-checked:translate-y-0
+        bg-background px-6"
+      >
+        <ul className="flex flex-col gap-4 py-4">
+          <li>
+            <a href="/" className="text-lg">
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="/courses" className="text-lg">
+              Courses
+            </a>
+          </li>
+          <li>
+            <a href="/about" className="text-lg">
+              About
+            </a>
+          </li>
+          <li>
+            <a href="/contact" className="text-lg">
+              Contact Us
+            </a>
+          </li>
+        </ul>
+
+        <div className="pb-4">
+          <a href="/login" className="block py-2 text-lg hover:underline">
+            Login
+          </a>
+          <a href="/register" className="block py-2 text-lg hover:underline">
+            Register
+          </a>
+        </div>
+      </div>
     </div>
   );
 };

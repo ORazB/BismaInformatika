@@ -1,12 +1,33 @@
 'use client'
-
 // React
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 export default function Sidebar() {
-
-  const [checkedCategories, setCheckedCategories] = useState<Record<string, boolean>>({});
-
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  
+  const [checkedCategories, setCheckedCategories] = useState<Record<string, boolean>>(() => {
+    const initial: Record<string, boolean> = {};
+    searchParams.getAll('category').forEach(cat => {
+      initial[cat] = true;
+    });
+    return initial;
+  });
+  
+  useEffect(() => {
+    const params = new URLSearchParams();
+    
+    Object.entries(checkedCategories).forEach(([key, value]) => {
+      if (value) {
+        params.append('category', key);
+      }
+    });
+    
+    const queryString = params.toString();
+    router.push(queryString ? `?${queryString}` : window.location.pathname, { scroll: false });
+  }, [checkedCategories, router]);
+  
   const categories = [
     { name: 'BNSP Certification', count: 6 },
     {
@@ -39,19 +60,43 @@ export default function Sidebar() {
       ]
     }
   ];
-
+  
   function handleCheckboxChange(categoryName: string) {
-    setCheckedCategories(prev => ({
-      ...prev,
-      [categoryName]: !prev[categoryName]
-    }));
+    setCheckedCategories(prev => {
+      const newState = { ...prev };
+      const isChecking = !prev[categoryName];
+      
+      newState[categoryName] = isChecking;
+      
+      const parentCategory = categories.find(cat => cat.name === categoryName);
+      
+      if (parentCategory?.subcategories) {
+        // If parent is checked, check all children
+        // If parent is unchecked, uncheck all children
+        parentCategory.subcategories.forEach(sub => {
+          newState[`${categoryName}-${sub.name}`] = isChecking;
+        });
+      } else {
+        // This is a child category, check if we need to uncheck the parent
+        const parentCat = categories.find(cat => 
+          cat.subcategories?.some(sub => `${cat.name}-${sub.name}` === categoryName)
+        );
+        
+        if (parentCat && !isChecking) {
+          // If unchecking a child, uncheck the parent
+          newState[parentCat.name] = false;
+        }
+      }
+      
+      return newState;
+    });
   }
-
+  
+  
   return (
     <div className="w-80 shrink-0">
       <div className="bg-white rounded-lg border border-gray-200 p-6">
         <h2 className="text-2xl font-semibold text-gray-800 mb-6">Course categories</h2>
-
         <div className="space-y-3">
           {categories.map((category, index) => (
             <div key={index}>
@@ -66,7 +111,6 @@ export default function Sidebar() {
                   {category.name} ({category.count})
                 </span>
               </label>
-
               {category.subcategories && (
                 <div className="ml-7 mt-2 space-y-2">
                   {category.subcategories.map((sub, subIndex) => (
@@ -89,5 +133,5 @@ export default function Sidebar() {
         </div>
       </div>
     </div>
-  )
+  );
 }

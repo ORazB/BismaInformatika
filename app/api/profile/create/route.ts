@@ -9,18 +9,14 @@ export async function POST(req: NextRequest) {
   let createdClerkUser: any = null;
   try {
 
-    console.log("1. Getting auth...");
     const { userId } = await auth();
 
-    console.log("2. Checking authorization...");
     if (!userId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    console.log("3. Parsing form data...");
     const formData = await req.formData();
 
-    console.log("4. Fetching acting user...");
     const actingUser = await prisma.user.findUnique({
       where: { clerkId: userId }
     });

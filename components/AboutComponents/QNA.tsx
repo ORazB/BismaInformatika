@@ -57,7 +57,7 @@ export default function QNA() {
                 openIndex === index ? 'max-h-48' : 'max-h-0'
               }`}
             >
-              <div className="px-6 pb-4 text-gray-text">
+              <div className="px-6 pb-4 text-gray-text text-sm xl:text-base">
                 {faq.answer}
               </div>
             </div>

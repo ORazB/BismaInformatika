@@ -134,10 +134,10 @@ export default function About() {
               </ul>
 
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
-                <button className="px-6 py-2 bg-white text-text rounded-sm font-semibold md:text-sm xl:text-base">
+                <button className="px-6 py-2 bg-white text-text rounded-sm font-semibold text-sm xl:text-base">
                   ENROLL NOW
                 </button>
-                <button className="px-6 py-2 border border-white text-white rounded-sm md:text-sm xl:text-base">
+                <button className="px-6 py-2 border border-white text-white rounded-sm text-sm xl:text-base">
                   GET SAMPLE CERTIFICATE
                 </button>
               </div>

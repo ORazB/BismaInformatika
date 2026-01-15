@@ -28,6 +28,7 @@ export default function UserProfileButton({user: actingUser}: UserProps) {
   return (
     <div>
       <Link href={`/profile/${actingUser.id}`}>
+
         <Image
           src={user?.imageUrl || actingUser.profileImage || ""}
           alt={user?.username || actingUser.username}

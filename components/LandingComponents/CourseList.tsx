@@ -44,11 +44,11 @@ export default function CourseList() {
 
   return (
     <div>
-      <div className="flex gap-4 items-center mt-8 w-max relative">
+      <div className="flex flex-wrap gap-2 sm:gap-3 lg:gap-4 items-center mt-8 w-full lg:w-max relative">
         {tabs.map((tab) => (
           <button
             key={tab}
-            className={`border-b-4 pb-1 font-semibold tracking-wide cursor-pointer text-lg relative ${
+            className={`border-b-4 pb-1 font-semibold tracking-wide cursor-pointer text-sm sm:text-base lg:text-lg relative ${
               activeTab === tab
                 ? "border-text z-10 text-text"
                 : "border-transparent text-gray-text"
@@ -61,7 +61,7 @@ export default function CourseList() {
         <div className="absolute bottom-0 left-0 right-0 border-b-4 border-gray-200"></div>
       </div>
 
-      <div className="mt-4 w-full grid grid-cols-4 place-items-center gap-8">
+      <div className="mt-4 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 place-items-center gap-8">
         {courseData![activeTab]?.map((contentItem: any, index) => (
           <Link
             href={""}

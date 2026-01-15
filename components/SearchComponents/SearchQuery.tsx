@@ -7,19 +7,25 @@ import SearchButton from "@/components/SearchComponents/SearchButton";
 import FilterButton from "@/components/SearchComponents/FilterButton";
 import SideBar from "@/components/SearchComponents/SideBar";
 
-import { Course, UserCourse, Category } from "@prisma/client";
+// Types
+type EnrollmentCountPerCourse = {
+  courseId: number;
+  _count: number;
+};
+
+import { Course, Category } from "@prisma/client";
 
 export default function SearchQuery({
   result,
   searchQueryResult,
-  sortBy,
+  // sortBy,
   totalEnrollments,
   categories,
 }: {
   result: Course[];
   searchQueryResult: string;
-  sortBy: string;
-  totalEnrollments: UserCourse[];
+  // sortBy: string;
+  totalEnrollments: EnrollmentCountPerCourse[];
   categories: Category[];
 }) {
   return (
@@ -80,7 +86,7 @@ export default function SearchQuery({
                   const enrollment = totalEnrollments.find(
                     (e) => e.courseId === course.id
                   );
-                  const count = enrollment?._count.courseId || 0;
+                  const count = enrollment?._count || 0;
 
                   return (
                     <Link

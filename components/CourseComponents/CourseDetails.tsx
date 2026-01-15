@@ -27,7 +27,7 @@ export default function CourseDetails({
   purchased,
 }: {
   course: SerailizedCourse;
-  category: Category;
+  category: Category | null;
   user: User;
   purchased: boolean;
 }) {

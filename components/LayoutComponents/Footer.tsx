@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Footer() {
   return (
     <div>
@@ -10,7 +12,9 @@ export default function Footer() {
           >
             {/* ================= LOGO & DESCRIPTION ================= */}
             <div className="space-y-4">
-              <img
+              <Image
+                width={150}
+                height={150}
                 src="/logos/Logo-Bisma-Informatika-Indonesia-Merah (2) 2.png"
                 alt="Bisma Informatika"
                 className="h-15 w-auto"

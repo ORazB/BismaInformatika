@@ -148,45 +148,59 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8 items-center">
-            <Image
-              width={400}
-              height={400}
-              alt="Benefits"
-              src="/landing-page/benefit.webp"
-              className="w-full h-auto"
-            ></Image>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8 items-stretch">
+            {/* BIG IMAGE */}
+            <div className="relative w-full h-full">
               <Image
-                width={200}
-                height={200}
+                alt="Benefits"
+                src="/landing-page/benefit.webp"
+                width={750}
+                height={400}
+                className="
+                  w-full
+                  h-auto
+                  lg:absolute lg:inset-0
+                  lg:h-full lg:w-full
+                  object-cover
+                  rounded-xl
+                "
+                sizes="(min-width: 1024px) 50vw, 100vw"
+              />
+            </div>
+          
+            {/* 4 SMALL IMAGES */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-full">
+              <Image
+                width={750}
+                height={750}
                 alt="Benefit 1"
                 src="/landing-page/benefit-1.png"
                 className="w-full h-24 sm:h-32 md:h-36 lg:h-40 object-cover rounded-xl"
-              ></Image>
+              />
               <Image
-                width={200}
-                height={200}
+                width={750}
+                height={750}
                 alt="Benefit 2"
                 src="/landing-page/benefit-2.png"
                 className="w-full h-24 sm:h-32 md:h-36 lg:h-40 object-cover rounded-xl"
-              ></Image>
+              />
               <Image
-                width={200}
-                height={200}
+                width={750}
+                height={750}
                 alt="Benefit 3"
                 src="/landing-page/benefit-3.png"
                 className="w-full h-24 sm:h-32 md:h-36 lg:h-40 object-cover rounded-xl"
-              ></Image>
+              />
               <Image
-                width={200}
-                height={200}
+                width={750}
+                height={750}
                 alt="Benefit 4"
                 src="/landing-page/benefit-4.png"
                 className="w-full h-24 sm:h-32 md:h-36 lg:h-40 object-cover rounded-xl"
-              ></Image>
+              />
             </div>
           </div>
+
         </div>
       </section>
 

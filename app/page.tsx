@@ -335,28 +335,28 @@ export default function Home() {
               width={1000}
               height={450}
               alt="SMK Ti Bali Global Jimbaran"
-              src="/landing-page/testimonials/testimonial-1.png"
+              src="/landing-page/testimonials/testimonial-2.png"
             ></Image>
             <Image
               className="saturate-0 hover:saturate-100 transition-all"
               width={1000}
               height={450}
               alt="SMK Ti Bali Global Jimbaran"
-              src="/landing-page/testimonials/testimonial-1.png"
+              src="/landing-page/testimonials/testimonial-3.png"
             ></Image>
             <Image
               className="saturate-0 hover:saturate-100 transition-all"
               width={1000}
               height={450}
               alt="SMK Ti Bali Global Jimbaran"
-              src="/landing-page/testimonials/testimonial-1.png"
+              src="/landing-page/testimonials/testimonial-4.png"
             ></Image>
             <Image
               className="saturate-0 hover:saturate-100 transition-all"
               width={1000}
               height={450}
               alt="SMK Ti Bali Global Jimbaran"
-              src="/landing-page/testimonials/testimonial-1.png"
+              src="/landing-page/testimonials/testimonial-5.png"
             ></Image>
           </div>
         </div>

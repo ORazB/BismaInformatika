@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <div>
-      <footer className="w-full bg-red-700 text-white">
+      <footer className="w-full bg-primary text-white">
         <div className="container mx-auto px-6 py-14">
           <div
             className="grid gap-12 
@@ -13,7 +13,7 @@ export default function Footer() {
               <img
                 src="/logos/Logo-Bisma-Informatika-Indonesia-Merah (2) 2.png"
                 alt="Bisma Informatika"
-                className="h-12 w-auto"
+                className="h-15 w-auto"
               />
 
               <p className="text-sm leading-relaxed max-w-xs">

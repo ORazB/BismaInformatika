@@ -61,30 +61,30 @@ export default function CourseList() {
         <div className="absolute bottom-0 left-0 right-0 border-b-4 border-gray-200"></div>
       </div>
 
-      <div className="mt-4 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 place-items-center gap-8">
+      <div className="mt-4 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         {courseData![activeTab]?.map((contentItem: any, index) => (
           <Link
             href=""
             key={index}
-            className="p-4 border border-gray-text rounded-xl hover:shadow-md transition"
+            className="w-full max-w-[320px] h-[420px] p-4 border border-gray-text rounded-xl hover:shadow-md transition flex flex-col"
           >
+
             {/* IMAGE */}
-            <div className="w-full aspect-video overflow-hidden rounded-lg">
+            <div className="w-full h-[150px] overflow-hidden rounded-lg relative">
               <Image
-                width={1000}
-                height={463}
-                className="w-full h-full object-cover"
                 src={contentItem.image}
                 alt={contentItem.title}
+                fill
+                className="object-cover"
               />
             </div>
 
             {/* TEXT */}
             <div className="grid gap-1 mt-4">
-              <h3 className="font-semibold text-base sm:text-lg tracking-wide text-text">
+              <h3 className="font-semibold text-base sm:text-lg tracking-wide text-text line-clamp-2">
                 {contentItem.title}
               </h3>
-              <p className="font-light text-sm tracking-wide text-gray-text">
+              <p className="font-light text-sm tracking-wide text-gray-text line-clamp-1">
                 {contentItem.author}
               </p>
             </div>
@@ -105,7 +105,7 @@ export default function CourseList() {
             </div>
 
             {/* PRICE */}
-            <h2 className="mt-6 text-lg sm:text-xl font-semibold tracking-wide">
+            <h2 className="mt-auto pt-4 text-lg sm:text-xl font-semibold tracking-wide">
               Rp.{contentItem.price.toLocaleString()}
             </h2>
           </Link>

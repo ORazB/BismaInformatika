@@ -105,34 +105,37 @@ const Navbar = ({ actingUser }: { actingUser: User | null }) => {
           </Link>
 
           <ul className="flex gap-8">
-            {["Home", "Courses", "About", "Contact Us"].map((item) => (
-              <li key={item}>
-                <Link
-                  href={
-                    item === "Home"
-                      ? "/"
-                      : `/${item.toLowerCase().replace(" ", "")}`
-                  }
-                  className="text-base font-medium hover:underline"
-                >
-                  {item}
-                </Link>
-              </li>
-            ))}
+            <li>
+              <Link href={"/"}>Home</Link>
+            </li>
+            <li>
+              <Link href={"/courses"}>Courses</Link>
+            </li>
+            <li>
+              <Link href={"/about"}>About</Link>
+            </li>
+            <li>
+              <Link href={"/contact"}>Contact Us</Link>
+            </li>
           </ul>
         </nav>
 
         {/* RIGHT — CLERK */}
         <div className="flex items-center gap-4">
           <SignedOut>
-            <SignInButton>
-              <button className="font-semibold hover:underline">Login</button>
-            </SignInButton>
-
-            <SignUpButton>
-              <button className="font-semibold hover:underline">Sign Up</button>
-            </SignUpButton>
+            <div className="flex items-center gap-3">
+              <SignInButton>
+                <button className="font-semibold hover:underline text-text">Login</button>
+              </SignInButton>
+          
+              <span className="h-5 w-0.5 bg-text" />
+          
+              <SignUpButton>
+                <button className="font-semibold hover:underline text-text">Sign Up</button>
+              </SignUpButton>
+            </div>
           </SignedOut>
+
 
           <SignedIn>
             {actingUser && <UserProfileButton user={actingUser} />}

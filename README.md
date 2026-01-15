@@ -1,15 +1,3 @@
-<h1 align="center">Amphoreus Memorial</h1>
-
-<p align="center">
-  <a target="_blank" href="https://pbs.twimg.com/media/G5JiYQQb0AAnxGT?format=jpg&name=4096x4096">
-    <img src="https://pbs.twimg.com/media/G5JiYQQb0AAnxGT?format=jpg&name=4096x4096" width="400" />
-  </a>
-</p>
-
-<p align="center"><i>"We will remember this world."</i> 🌟</p>
-
----
-
 ## 📌 Project Overview
 
 This website project was developed as part of a **PKL (Praktik Kerja Lapangan) task assigned by Bisma Informatika**.  
@@ -86,6 +74,9 @@ If all steps are followed correctly, the website should now be running locally.
 
 ---
 
-## ✨ Author
+## ✨ Team
 
-Developed by PKL students as part of a task assigned by **Bisma Informatika**.
+- **Keita** – Project Lead & Lead Developer  
+- **Yogiksigma** – Frontend & UI Design  
+- **Winter** – Frontend & UI Design
+- **Team Member 3** – Frontend & UI Design  

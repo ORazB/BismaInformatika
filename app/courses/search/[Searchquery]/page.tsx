@@ -1,6 +1,14 @@
 import prisma from "@/lib/prisma";
+import type { Prisma } from "@prisma/client";
+
 // Components
 import SearchQueryComponent from "@/components/SearchComponents/SearchQuery";
+
+// Types
+type EnrollmentCountPerCourse = {
+  courseId: number;
+  _count: number;
+};
 
 export default async function SearchQuery({
   params,
@@ -10,81 +18,73 @@ export default async function SearchQuery({
   searchParams: Promise<{ SortBy: string; category: string | string[] }>;
 }) {
   const { SearchQuery } = await params;
-  const { SortBy, category } = await searchParams;
+  const { category } = await searchParams;
+  // const { SortBy } = await searchParams;
 
-  let filteredResult: any;
+  const where: Prisma.CourseWhereInput = {
+    title: {
+      contains: SearchQuery,
+    }
+  };
 
   if (category) {
-    // Make Category to always be an array
-    const categoryArray = Array.isArray(category) ? category : [category];
-
-    // Decode URL-encoded strings and handle spaces
-    const decodedCategories = categoryArray.map(cat => {
-      const decoded = decodeURIComponent(cat.replace(/\+/g, ' '));
-      // If category has a dash (parent-child format), extract just the child name
-      // Otherwise use the full name (for parent categories without children)
-      const parts = decoded.split('-');
-      return parts.length > 1 ? parts[1].trim() : decoded;
-    });
-
-    console.log('Searching for categories:', decodedCategories);
-
-    const allCategories = await prisma.category.findMany({
-      where: {
-        name: {
-          in: decodedCategories,
-        },
-      },
-    });
-
-    console.log('Found categories:', allCategories);
-
-    const allCategoriesId = allCategories.map((cat) => cat.id);
-
-    filteredResult = await prisma.course.findMany({
-      where: {
-        title: {
-          contains: SearchQuery,
-        },
-        categoryId: {
-          in: allCategoriesId,
-        },
-      },
-    });
-  } else {
-    filteredResult = await prisma.course.findMany({
-      where: {
-        title: {
-          contains: SearchQuery,
-        },
-      },
-      take: 9,
-      orderBy: {
-        createdAt: 'desc',
-      },
-    });
-  }
+      const categoryArray = Array.isArray(category) ? category : [category];
   
-  const categories = await prisma.category.findMany();
-
-  const enrollmentsPerCourse = await prisma.userCourse.groupBy({
-    by: ["courseId"],
-    where: {
-      courseId: {
-        in: filteredResult.map((course) => course.id),
+      const decodedCategories = categoryArray.map((cat) => {
+        const decoded = decodeURIComponent(cat.replace(/\+/g, " "));
+        const parts = decoded.split("-");
+        
+        return parts.length > 1 ? parts[1].trim() : decoded;
+      });
+  
+      const matchedCategories = await prisma.category.findMany({
+        where: {
+          name: {
+            in: decodedCategories,
+          },
+        },
+        select: {
+          id: true,
+        },
+      });
+  
+      where.categoryId = {
+        in: matchedCategories.map((cat) => cat.id),
+      };
+    }
+  
+    const filteredResult = await prisma.course.findMany({
+      where,
+      // take: category ? undefined : 9,
+      // orderBy: category ? undefined : { createdAt: "desc" },
+    });
+  
+    const categories = await prisma.category.findMany();
+  
+    const enrollmentsPerCourse = await prisma.userCourse.groupBy({
+      by: ["courseId"],
+      where: {
+        courseId: {
+          in: filteredResult.map((course) => course.id),
+        },
       },
-    },
-    _count: {
-      courseId: true,
-    },
-  });
+      _count: {
+        courseId: true,
+      },
+    });
+  
+    const enrollmentCounts: EnrollmentCountPerCourse[] =
+      enrollmentsPerCourse.map(e => ({
+        courseId: e.courseId,
+        _count: e._count.courseId,
+      }));
 
   return (
     <SearchQueryComponent
       result={filteredResult}
       searchQueryResult={SearchQuery}
-      sortBy={SortBy || ""}
-      totalEnrollments={enrollmentsPerCourse}
+      // sortBy={SortBy || ""}
+      totalEnrollments={enrollmentCounts}
       categories={categories}
     />
   );

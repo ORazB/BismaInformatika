@@ -1,7 +1,7 @@
 ## 📌 Project Overview
 
 This website project was developed as part of a **PKL (Praktik Kerja Lapangan) task assigned by Bisma Informatika**.  
-The project is designed to provide information related to **offline training programs**.
+The project is designed to provide information related to **offline training programs within Bisma Informatika**.
 
 ---
 

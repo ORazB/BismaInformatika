@@ -11,6 +11,7 @@ import "boxicons/css/boxicons.min.css";
 
 // Components
 import UserProfileButton from "@/components/LayoutComponents/UserProfileButton";
+import Footer from "@/components/LayoutComponents/Footer";
 
 // Clerk
 import {
@@ -53,7 +54,7 @@ export default async function RootLayout({
 }>) {
   async function getUser() {
     const { userId } = await auth();
-    
+
     if (!userId) {
       return null;
     }
@@ -80,6 +81,7 @@ export default async function RootLayout({
         <body className={`${inter.className} antialiased`}>
           <Navbar actingUser={user} />
           {children}
+          <Footer />
         </body>
       </html>
     </ClerkProvider>

@@ -236,13 +236,13 @@ export default function Home() {
                     className="w-full h-full rounded-full object-cover"
                     width={64}
                     height={64}
-                    src={"/landing-page/profiles/profile-1.jpg"}
+                    src={"/landing-page/profiles/profile-4.jpg"}
                     alt="review"
                   ></Image>
                 </div>
                 <div className="grid">
                   <h3 className="text-text font-semibold tracking-wide">
-                    Bessie Cooper
+                    Clarence Evelien
                   </h3>
                   <p className="text-gray-text text-sm">Student</p>
                 </div>
@@ -267,13 +267,13 @@ export default function Home() {
                     className="w-full h-full rounded-full object-cover"
                     width={64}
                     height={64}
-                    src={"/landing-page/profiles/profile-1.jpg"}
+                    src={"/landing-page/profiles/profile-2.jpg"}
                     alt="review"
                   ></Image>
                 </div>
                 <div className="grid">
                   <h3 className="text-text font-semibold tracking-wide">
-                    Bessie Cooper
+                    Togzhan Aigul
                   </h3>
                   <p className="text-gray-text text-sm">Student</p>
                 </div>
@@ -298,7 +298,7 @@ export default function Home() {
                     className="w-full h-full rounded-full object-cover"
                     width={64}
                     height={64}
-                    src={"/landing-page/profiles/profile-1.jpg"}
+                    src={"/landing-page/profiles/profile-3.jpg"}
                     alt="review"
                   ></Image>
                 </div>
@@ -325,10 +325,10 @@ export default function Home() {
 
           <div className="grid gap-4 grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 place-items-center mt-8">
             <Image className="saturate-0 hover:saturate-100 transition-all" width={1000} height={450} alt="SMK Ti Bali Global Jimbaran" src="/landing-page/testimonials/testimonial-1.png"></Image>
-            <Image className="saturate-0 hover:saturate-100 transition-all" width={1000} height={450} alt="SMK Ti Bali Global Jimbaran" src="/landing-page/testimonials/testimonial-1.png"></Image>
-            <Image className="saturate-0 hover:saturate-100 transition-all" width={1000} height={450} alt="SMK Ti Bali Global Jimbaran" src="/landing-page/testimonials/testimonial-1.png"></Image>
-            <Image className="saturate-0 hover:saturate-100 transition-all" width={1000} height={450} alt="SMK Ti Bali Global Jimbaran" src="/landing-page/testimonials/testimonial-1.png"></Image>
-            <Image className="saturate-0 hover:saturate-100 transition-all" width={1000} height={450} alt="SMK Ti Bali Global Jimbaran" src="/landing-page/testimonials/testimonial-1.png"></Image>
+            <Image className="saturate-0 hover:saturate-100 transition-all" width={1000} height={450} alt="SMK Ti Bali Global Jimbaran" src="/landing-page/testimonials/testimonial-2.png"></Image>
+            <Image className="saturate-0 hover:saturate-100 transition-all" width={1000} height={450} alt="SMK Ti Bali Global Jimbaran" src="/landing-page/testimonials/testimonial-3.png"></Image>
+            <Image className="saturate-0 hover:saturate-100 transition-all" width={1000} height={450} alt="SMK Ti Bali Global Jimbaran" src="/landing-page/testimonials/testimonial-4.png"></Image>
+            <Image className="saturate-0 hover:saturate-100 transition-all" width={1000} height={450} alt="SMK Ti Bali Global Jimbaran" src="/landing-page/testimonials/testimonial-5.png"></Image>
           </div>
         </div>
       </section>

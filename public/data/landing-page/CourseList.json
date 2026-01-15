@@ -1,37 +1,36 @@
 {
   "Python": [
     {
-      "title": "100 Days of Code: The Complete Python Pro Bootcamp",
-      "image": "/landing-page/course-list/Image.png",
-      "author": "Dr. Angela Yu, Developer and Lead Instruktor",
-      "rating": 4.2,
-      "totalReview": 492203,
-      "price": 150000,
+      "title": "Arduino Programming: From Basics to Advanced Projects",
+      "image": "/landing-page/course-list/Arduino.jpg",
+      "rating": 4.5,
+      "totalReview": 325420,
+      "price": 299000,
       "destination": ""
     },
     {
-      "title": "100 Days of Cosde: The Complete Python Pro Bootcamp",
-      "image": "/landing-page/course-list/Image.png",
-      "author": "Dr. Angela Yu, Developer and Lead Instruktor",
-      "rating": 4.2,
-      "totalReview": 492203,
-      "price": 150000
+      "title": "Office Applications Mastery: Excel, Word & PowerPoint",
+      "image": "/landing-page/course-list/Internet-Office-Aplications.jpg",
+      "author": "Sarah Mitchell, Business Productivity Expert",
+      "rating": 4.3,
+      "totalReview": 287503,
+      "price": 199000
     },
     {
-      "title": "100 Days oaf Code: The Complete Python Pro Bootcamp",
-      "image": "/landing-page/course-list/Image.png",
-      "author": "Dr. Angela Yu, Developer and Lead Instruktor",
-      "rating": 4.2,
-      "totalReview": 492203,
-      "price": 150000
+      "title": "Network Technician: Complete Networking Guide",
+      "image": "/landing-page/course-list/Teknisi-Jaringan.jpg",
+      "author": "Ir. Budi Santoso, Network Engineer",
+      "rating": 4.6,
+      "totalReview": 412105,
+      "price": 349000
     },
     {
-      "title": "100 Days of Csadode: The Complete Python Pro Bootcamp",
-      "image": "/landing-page/course-list/Image.png",
-      "author": "Dr. Angela Yu, Developer and Lead Instruktor",
-      "rating": 4.2,
-      "totalReview": 492203,
-      "price": 150000
+      "title": "UI/UX Design: Create Beautiful User Experiences",
+      "image": "/landing-page/course-list/UI-UX.jpg",
+      "author": "Jessica Anderson, Lead UX Designer",
+      "rating": 4.4,
+      "totalReview": 356789,
+      "price": 279000
     }
   ],
 

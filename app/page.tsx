@@ -27,11 +27,11 @@ export default function Home() {
 
               <div className="button__container mt-4 flex flex-col sm:flex-row gap-4 lg:justify-start">
                 <button className="px-6 py-1 bg-white text-primary cursor-pointer font-semibold rounded-full transition">
-                  <i className="bx bx-caret-right align-middle text-xl"></i>
+                  <i className="bx bx-caret-right align-middle text-xl"></i>{" "}
                   Jelajahi Kursus
                 </button>
                 <button className="px-6 py-1 bg-transparent border-2 border-white text-white cursor-pointer font-semibold rounded-full transition">
-                  <i className="bx bx-caret-right align-middle text-xl"></i>
+                  <i className="bx bx-caret-right align-middle text-xl"></i>{" "}
                   Bicara Dengan Expert
                 </button>
               </div>
@@ -91,9 +91,8 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            
 
-            <div className="feature__item flex items-center justify-center gap-6">
+            <div className="feature__item flex flex-col lg:flex-row items-center gap-4">
               <div className="feature__icon">
                 <i className="bx bx-alarm text-5xl text-white"></i>
               </div>
@@ -203,15 +202,16 @@ export default function Home() {
               professional development.
             </p>
           </div>
+
           <CourseList />
         </div>
       </section>
 
       {/* Reviews */}
-      <section className="mt-28">
-        <div className="container mx-auto px-8">
+      <section className="mt-20 lg:mt-28">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid place-items-center gap-2">
-            <h2 className="text-text text-5xl font-semibold w-1/3 tracking-wide text-center">
+            <h2 className="text-text text-3xl lg:text-5xl font-semibold w-full lg:w-1/3 tracking-wide text-center">
               Hear Directly From Our Learners
             </h2>
           </div>
@@ -248,30 +248,67 @@ export default function Home() {
               </div>
             </div>
 
-                <p className="px-1 text-text font-semibold text-sm sm:text-base lg:text-lg leading-relaxed">
-                  {item.text}
-                </p>
+            <div className="bg-gray-100 p-4 rounded-2xl grid gap-6">
+              <div className="rounded-full p-4 bg-primary justify-self-start">
+                <i className="text-white bx bxs-quote-left text-2xl"></i>
+              </div>
 
-                <div className="flex items-center gap-3 mt-6">
-                  <div className="rounded-full w-12 h-12">
-                    <Image
-                      className="w-full h-full rounded-full object-cover"
-                      width={64}
-                      height={64}
-                      src="/landing-page/profiles/profile-1.jpg"
-                      alt="review"
-                    />
-                  </div>
+              <p className="px-2 text-text font-semibold text-lg/7">
+                What I loved most about Bisma Academy was the hands-on approach
+                that made every lesson feel relevant and engaging. The courses
+                were highly interactive, filled with real examples, and I could
+                immediately apply what I was learning.
+              </p>
 
-                  <div className="grid">
-                    <h3 className="text-text font-semibold tracking-wide">
-                      Bessie Cooper
-                    </h3>
-                    <p className="text-gray-text text-sm">Student</p>
-                  </div>
+              <div className="flex items-center gap-2 mt-8">
+                <div className="rounded-full w-[50px] h-[50px]">
+                  <Image
+                    className="w-full h-full rounded-full object-cover"
+                    width={64}
+                    height={64}
+                    src={"/landing-page/profiles/profile-1.jpg"}
+                    alt="review"
+                  ></Image>
+                </div>
+                <div className="grid">
+                  <h3 className="text-text font-semibold tracking-wide">
+                    Bessie Cooper
+                  </h3>
+                  <p className="text-gray-text text-sm">Student</p>
                 </div>
               </div>
-            ))}
+            </div>
+
+            <div className="bg-gray-100 p-4 rounded-2xl grid gap-6">
+              <div className="rounded-full p-4 bg-primary justify-self-start">
+                <i className="text-white bx bxs-quote-left text-2xl"></i>
+              </div>
+
+              <p className="px-2 text-text font-semibold text-lg/7">
+                I work a full-time job and never imagined I’d have enough time
+                or energy to learn coding. However, the bite-sized lessons,
+                supportive community, and flexible schedule at Bisma Academy
+                made it surprisingly manageable.
+              </p>
+
+              <div className="flex items-center gap-2 mt-8">
+                <div className="rounded-full w-[50px] h-[50px]">
+                  <Image
+                    className="w-full h-full rounded-full object-cover"
+                    width={64}
+                    height={64}
+                    src={"/landing-page/profiles/profile-1.jpg"}
+                    alt="review"
+                  ></Image>
+                </div>
+                <div className="grid">
+                  <h3 className="text-text font-semibold tracking-wide">
+                    Bessie Cooper
+                  </h3>
+                  <p className="text-gray-text text-sm">Student</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -286,11 +323,41 @@ export default function Home() {
           </div>
 
           <div className="grid gap-4 grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 place-items-center mt-8">
-            <Image className="saturate-0 hover:saturate-100 transition-all" width={1000} height={450} alt="SMK Ti Bali Global Jimbaran" src="/landing-page/testimonials/testimonial-1.png"></Image>
-            <Image className="saturate-0 hover:saturate-100 transition-all" width={1000} height={450} alt="SMK Ti Bali Global Jimbaran" src="/landing-page/testimonials/testimonial-1.png"></Image>
-            <Image className="saturate-0 hover:saturate-100 transition-all" width={1000} height={450} alt="SMK Ti Bali Global Jimbaran" src="/landing-page/testimonials/testimonial-1.png"></Image>
-            <Image className="saturate-0 hover:saturate-100 transition-all" width={1000} height={450} alt="SMK Ti Bali Global Jimbaran" src="/landing-page/testimonials/testimonial-1.png"></Image>
-            <Image className="saturate-0 hover:saturate-100 transition-all" width={1000} height={450} alt="SMK Ti Bali Global Jimbaran" src="/landing-page/testimonials/testimonial-1.png"></Image>
+            <Image
+              className="saturate-0 hover:saturate-100 transition-all"
+              width={1000}
+              height={450}
+              alt="SMK Ti Bali Global Jimbaran"
+              src="/landing-page/testimonials/testimonial-1.png"
+            ></Image>
+            <Image
+              className="saturate-0 hover:saturate-100 transition-all"
+              width={1000}
+              height={450}
+              alt="SMK Ti Bali Global Jimbaran"
+              src="/landing-page/testimonials/testimonial-1.png"
+            ></Image>
+            <Image
+              className="saturate-0 hover:saturate-100 transition-all"
+              width={1000}
+              height={450}
+              alt="SMK Ti Bali Global Jimbaran"
+              src="/landing-page/testimonials/testimonial-1.png"
+            ></Image>
+            <Image
+              className="saturate-0 hover:saturate-100 transition-all"
+              width={1000}
+              height={450}
+              alt="SMK Ti Bali Global Jimbaran"
+              src="/landing-page/testimonials/testimonial-1.png"
+            ></Image>
+            <Image
+              className="saturate-0 hover:saturate-100 transition-all"
+              width={1000}
+              height={450}
+              alt="SMK Ti Bali Global Jimbaran"
+              src="/landing-page/testimonials/testimonial-1.png"
+            ></Image>
           </div>
         </div>
       </section>

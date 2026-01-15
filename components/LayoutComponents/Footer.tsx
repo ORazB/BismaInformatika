@@ -11,7 +11,7 @@ export default function Footer() {
             {/* ================= LOGO & DESCRIPTION ================= */}
             <div className="space-y-4">
               <img
-                src="/logos/logo-white.png"
+                src="/logos/Logo-Bisma-Informatika-Indonesia-Merah (2) 2.png"
                 alt="Bisma Informatika"
                 className="h-12 w-auto"
               />

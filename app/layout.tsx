@@ -27,7 +27,6 @@ import { auth } from "@clerk/nextjs/server";
 import prisma from "@/lib/prisma";
 import { User } from "@prisma/client";
 
-
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
 //   subsets: ["latin"],
@@ -87,66 +86,116 @@ export default async function RootLayout({
 
 const Navbar = ({ actingUser }: { actingUser: User | null }) => {
   return (
-    <div className="w-full border-b-2 shadow border-zinc-300 bg-background p-2 z-10000 top-0 sticky">
-      <header className="container mx-auto flex justify-between w-4/5 items-center gap-4 h-16">
-        <nav className="flex items-center gap-8">
-          <Link href="/" className="logo">
+    <div className="w-full shadow bg-background sticky top-0 z-50">
+      {/* TOGGLE FOR MOBILE (NO JS) */}
+      <input type="checkbox" id="menu-toggle" className="peer hidden" />
+
+      {/* ================= DESKTOP & TABLET ================= */}
+      <header className="container mx-auto hidden md:flex justify-between items-center h-16 px-6">
+        {/* LEFT */}
+        <nav className="flex items-center gap-10">
+          <Link href="/">
             <Image
               alt="bisma-informatika-logo"
               width={500}
               height={500}
-              className="w-[200px] h-[-200px]"
+              className="w-[180px]"
               src="/logos/logo-white.png"
-            ></Image>
+            />
           </Link>
-          <ul className="flex gap-10">
-            <li>
-              <Link className="text-lg hover:underline" href="/">
-                Home
-              </Link>
-            </li>
-            <li>
-              <a className="text-lg hover:underline" href="/courses">
-                Courses
-              </a>
-            </li>
-            <li>
-              <a className="text-lg hover:underline" href="/about">
-                About
-              </a>
-            </li>
-            <li>
-              <a className="text-lg hover:underline" href="/contact">
-                Contact Us
-              </a>
-            </li>
+
+          <ul className="flex gap-8">
+            {["Home", "Courses", "About", "Contact Us"].map((item) => (
+              <li key={item}>
+                <Link
+                  href={
+                    item === "Home"
+                      ? "/"
+                      : `/${item.toLowerCase().replace(" ", "")}`
+                  }
+                  className="text-base font-medium hover:underline"
+                >
+                  {item}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
 
-        <div className="clerk relative">
+        {/* RIGHT — CLERK */}
+        <div className="flex items-center gap-4">
           <SignedOut>
             <SignInButton>
-              <button className="px-4 py-2 rounded-lg font-semibold hover:underline cursor-pointer">
-                Login
-              </button>
+              <button className="font-semibold hover:underline">Login</button>
             </SignInButton>
 
-            <div className="line absolute w-0.5 bottom-0 right-22 h-3/4 bg-black"></div>
-
             <SignUpButton>
-              <button className="px-4 py-2 rounded-lg font-semibold hover:underline cursor-pointer">
-                Sign Up
-              </button>
+              <button className="font-semibold hover:underline">Sign Up</button>
             </SignUpButton>
           </SignedOut>
 
           <SignedIn>
-            <div className="scale-125 cursor-pointer">
-              <UserProfileButton user={actingUser} />
-            </div>
+            {actingUser && <UserProfileButton user={actingUser} />}
           </SignedIn>
         </div>
       </header>
+
+      {/* ================= MOBILE HEADER ================= */}
+      <header className="container mx-auto flex md:hidden justify-between items-center h-16 px-4">
+        <Link href="/">
+          <Image
+            alt="logo"
+            width={500}
+            height={500}
+            className="w-[150px]"
+            src="/logos/logo-white.png"
+          />
+        </Link>
+
+        <label htmlFor="menu-toggle" className="cursor-pointer">
+          <i className="bx bx-menu text-3xl"></i>
+        </label>
+      </header>
+
+      {/* ================= MOBILE MENU ================= */}
+      <div className="md:hidden max-h-0 overflow-hidden peer-checked:max-h-[500px] transition-all duration-300">
+        <div className="px-6 pb-6 pt-2 flex flex-col gap-4">
+          {["Home", "Courses", "About", "Contact Us"].map((item) => (
+            <Link
+              key={item}
+              href={
+                item === "Home"
+                  ? "/"
+                  : `/${item.toLowerCase().replace(" ", "")}`
+              }
+              className="font-semibold"
+            >
+              {item}
+            </Link>
+          ))}
+
+          {/* CLERK MOBILE */}
+          <div className="pt-4 flex flex-col gap-3">
+            <SignedOut>
+              <SignInButton>
+                <button className="w-full py-2 border rounded-lg font-semibold">
+                  Login
+                </button>
+              </SignInButton>
+
+              <SignUpButton>
+                <button className="w-full py-2 bg-primary text-white rounded-lg font-semibold">
+                  Sign Up
+                </button>
+              </SignUpButton>
+            </SignedOut>
+
+            <SignedIn>
+              {actingUser && <UserProfileButton user={actingUser} />}
+            </SignedIn>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

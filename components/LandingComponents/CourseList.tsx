@@ -44,39 +44,6 @@ export default function CourseList() {
 
   return (
     <div>
-<<<<<<< HEAD
-      {/* ================= TABS ================= */}
-      <div className="mt-8 relative">
-        <div className="flex gap-4 items-center overflow-x-auto no-scrollbar pb-1">
-          {tabs.map((tab) => (
-            <button
-              key={tab}
-              className={`whitespace-nowrap border-b-4 pb-1 font-semibold tracking-wide cursor-pointer text-base sm:text-lg relative transition-colors ${
-                activeTab === tab
-                  ? "border-text text-text"
-                  : "border-transparent text-gray-text"
-              }`}
-              onClick={() => setActiveTab(tab)}
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
-
-        {/* GARIS BAWAH */}
-        <div className="absolute bottom-0 left-0 right-0 border-b-4 border-gray-200"></div>
-      </div>
-
-      {/* ================= COURSE GRID ================= */}
-      <div
-        className="
-      mt-6 w-full grid gap-6
-      grid-cols-1
-      sm:grid-cols-2
-      lg:grid-cols-4
-    "
-      >
-=======
       <div className="flex flex-wrap gap-2 sm:gap-3 lg:gap-4 items-center mt-8 w-full lg:w-max relative">
         {tabs.map((tab) => (
           <button
@@ -95,7 +62,6 @@ export default function CourseList() {
       </div>
 
       <div className="mt-4 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 place-items-center gap-8">
->>>>>>> e3e2a65586c6e1c44f1cce792c710be4c40d87b7
         {courseData![activeTab]?.map((contentItem: any, index) => (
           <Link
             href=""

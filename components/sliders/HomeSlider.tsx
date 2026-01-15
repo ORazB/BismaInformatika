@@ -134,11 +134,11 @@ export default function HomeSlider() {
       </Swiper>
 
       {/* Custom Navigation */}
-      <button className="custom-swiper-button-prev cursor-pointer absolute right-[55%] sm:right-[55%] -bottom-6 -translate-y-1/2 z-50 bg-white/80 rounded-full p-1 shadow-md shadow-gray-300 hover:bg-gray-200/80 transition-all">
+      <button className="custom-swiper-button-prev cursor-pointer absolute right-[75%] md:right-[57%] sm:right-[55%] -bottom-6 -translate-y-1/2 z-50 bg-white/80 rounded-full p-1 shadow-md shadow-gray-300 hover:bg-gray-200/80 transition-all">
         <i className="bx bx-chevron-left w-7 h-7 sm:w-8 sm:h-8 text-2xl sm:text-3xl align-middle text-primary"></i>
       </button>
 
-      <button className="custom-swiper-button-next cursor-pointer absolute left-[55%] sm:left-[55%] -bottom-6 -translate-y-1/2 z-50 bg-white/80 rounded-full p-1 shadow-md shadow-gray-300 hover:bg-gray-200/80 transition-all">
+      <button className="custom-swiper-button-next cursor-pointer absolute left-[75%] md:left-[57%] sm:left-[55%] -bottom-6 -translate-y-1/2 z-50 bg-white/80 rounded-full p-1 shadow-md shadow-gray-300 hover:bg-gray-200/80 transition-all">
         <i className="bx bx-chevron-right w-7 h-7 sm:w-8 sm:h-8 text-2xl sm:text-3xl align-middle text-primary"></i>
       </button>
 

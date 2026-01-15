@@ -85,14 +85,12 @@ export default function Contact() {
                 <h3 className="text-xl md:text-2xl font-semibold text-gray-900 mb-2">
                   Visit Us
                 </h3>
+                <p className="text-gray-600 text-sm md:text-base">Jl Pandu</p>
                 <p className="text-gray-600 text-sm md:text-base">
-                  Jl Lingkar Timur Udayana
+                  No. 9, Denpasar
                 </p>
                 <p className="text-gray-600 text-sm md:text-base">
-                  No. 14, Jimbaran
-                </p>
-                <p className="text-gray-600 text-sm md:text-base">
-                  Kuta Selatan 80361
+                  Kota Denpasar 80361
                 </p>
               </div>
 

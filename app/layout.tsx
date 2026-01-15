@@ -11,6 +11,7 @@ import "boxicons/css/boxicons.min.css";
 
 // Components
 import UserProfileButton from "@/components/LayoutComponents/UserProfileButton";
+import Footer from "@/components/LayoutComponents/Footer";
 
 // Clerk
 import {
@@ -25,7 +26,6 @@ import { auth } from "@clerk/nextjs/server";
 
 import prisma from "@/lib/prisma";
 import { User } from "@prisma/client";
-
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -54,7 +54,7 @@ export default async function RootLayout({
 }>) {
   async function getUser() {
     const { userId } = await auth();
-    
+
     if (!userId) {
       return null;
     }
@@ -77,6 +77,7 @@ export default async function RootLayout({
         <body className={`${inter.className} antialiased`}>
           <Navbar actingUser={user} />
           {children}
+          <Footer />
         </body>
       </html>
     </ClerkProvider>
@@ -85,6 +86,116 @@ export default async function RootLayout({
 
 const Navbar = ({ actingUser }: { actingUser: User | null }) => {
   return (
-    <div></div>
+    <div className="w-full shadow bg-background sticky top-0 z-50">
+      {/* TOGGLE FOR MOBILE (NO JS) */}
+      <input type="checkbox" id="menu-toggle" className="peer hidden" />
+
+      {/* ================= DESKTOP & TABLET ================= */}
+      <header className="container mx-auto hidden md:flex justify-between items-center h-16 px-6">
+        {/* LEFT */}
+        <nav className="flex items-center gap-10">
+          <Link href="/">
+            <Image
+              alt="bisma-informatika-logo"
+              width={500}
+              height={500}
+              className="w-[180px]"
+              src="/logos/logo-white.png"
+            />
+          </Link>
+
+          <ul className="flex gap-8">
+            {["Home", "Courses", "About", "Contact Us"].map((item) => (
+              <li key={item}>
+                <Link
+                  href={
+                    item === "Home"
+                      ? "/"
+                      : `/${item.toLowerCase().replace(" ", "")}`
+                  }
+                  className="text-base font-medium hover:underline"
+                >
+                  {item}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        {/* RIGHT — CLERK */}
+        <div className="flex items-center gap-4">
+          <SignedOut>
+            <SignInButton>
+              <button className="font-semibold hover:underline">Login</button>
+            </SignInButton>
+
+            <SignUpButton>
+              <button className="font-semibold hover:underline">Sign Up</button>
+            </SignUpButton>
+          </SignedOut>
+
+          <SignedIn>
+            {actingUser && <UserProfileButton user={actingUser} />}
+          </SignedIn>
+        </div>
+      </header>
+
+      {/* ================= MOBILE HEADER ================= */}
+      <header className="container mx-auto flex md:hidden justify-between items-center h-16 px-4">
+        <Link href="/">
+          <Image
+            alt="logo"
+            width={500}
+            height={500}
+            className="w-[150px]"
+            src="/logos/logo-white.png"
+          />
+        </Link>
+
+        <label htmlFor="menu-toggle" className="cursor-pointer">
+          <i className="bx bx-menu text-3xl"></i>
+        </label>
+      </header>
+
+      {/* ================= MOBILE MENU ================= */}
+      <div className="md:hidden max-h-0 overflow-hidden peer-checked:max-h-[500px] transition-all duration-300">
+        <div className="px-6 pb-6 pt-2 flex flex-col gap-4">
+          {["Home", "Courses", "About", "Contact Us"].map((item) => (
+            <Link
+              key={item}
+              href={
+                item === "Home"
+                  ? "/"
+                  : `/${item.toLowerCase().replace(" ", "")}`
+              }
+              className="font-semibold"
+            >
+              {item}
+            </Link>
+          ))}
+
+          {/* CLERK MOBILE */}
+          <div className="pt-4 flex flex-col gap-3">
+            <SignedOut>
+              <SignInButton>
+                <button className="w-full py-2 border rounded-lg font-semibold">
+                  Login
+                </button>
+              </SignInButton>
+
+              <SignUpButton>
+                <button className="w-full py-2 bg-primary text-white rounded-lg font-semibold">
+                  Sign Up
+                </button>
+              </SignUpButton>
+            </SignedOut>
+
+            <SignedIn>
+              {actingUser && <UserProfileButton user={actingUser} />}
+            </SignedIn>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };

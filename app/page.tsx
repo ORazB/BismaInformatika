@@ -5,12 +5,11 @@ import Image from "next/image";
 // Components
 import HomeSlider from "@/components/sliders/HomeSlider";
 import CourseList from "@/components/LandingComponents/CourseList";
-import NewsLetter from "@/components/LayoutComponents/NewsLetter"
+import NewsLetter from "@/components/LayoutComponents/NewsLetter";
 
 export default function Home() {
   return (
     <div className="w-full">
-    
       {/* Hero Slide */}
       <section className="flex w-full bg-primary overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -324,21 +323,49 @@ export default function Home() {
           </div>
 
           <div className="grid gap-4 grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 place-items-center mt-8">
-            <Image className="saturate-0 hover:saturate-100 transition-all" width={1000} height={450} alt="SMK Ti Bali Global Jimbaran" src="/landing-page/testimonials/testimonial-1.png"></Image>
-            <Image className="saturate-0 hover:saturate-100 transition-all" width={1000} height={450} alt="SMK Ti Bali Global Jimbaran" src="/landing-page/testimonials/testimonial-2.png"></Image>
-            <Image className="saturate-0 hover:saturate-100 transition-all" width={1000} height={450} alt="SMK Ti Bali Global Jimbaran" src="/landing-page/testimonials/testimonial-3.png"></Image>
-            <Image className="saturate-0 hover:saturate-100 transition-all" width={1000} height={450} alt="SMK Ti Bali Global Jimbaran" src="/landing-page/testimonials/testimonial-4.png"></Image>
-            <Image className="saturate-0 hover:saturate-100 transition-all" width={1000} height={450} alt="SMK Ti Bali Global Jimbaran" src="/landing-page/testimonials/testimonial-5.png"></Image>
+            <Image
+              className="saturate-0 hover:saturate-100 transition-all"
+              width={1000}
+              height={450}
+              alt="SMK Ti Bali Global Jimbaran"
+              src="/landing-page/testimonials/testimonial-1.png"
+            ></Image>
+            <Image
+              className="saturate-0 hover:saturate-100 transition-all"
+              width={1000}
+              height={450}
+              alt="SMK Ti Bali Global Jimbaran"
+              src="/landing-page/testimonials/testimonial-1.png"
+            ></Image>
+            <Image
+              className="saturate-0 hover:saturate-100 transition-all"
+              width={1000}
+              height={450}
+              alt="SMK Ti Bali Global Jimbaran"
+              src="/landing-page/testimonials/testimonial-1.png"
+            ></Image>
+            <Image
+              className="saturate-0 hover:saturate-100 transition-all"
+              width={1000}
+              height={450}
+              alt="SMK Ti Bali Global Jimbaran"
+              src="/landing-page/testimonials/testimonial-1.png"
+            ></Image>
+            <Image
+              className="saturate-0 hover:saturate-100 transition-all"
+              width={1000}
+              height={450}
+              alt="SMK Ti Bali Global Jimbaran"
+              src="/landing-page/testimonials/testimonial-1.png"
+            ></Image>
           </div>
         </div>
       </section>
 
-      <NewsLetter/>
+      <NewsLetter />
       {/* Newsletter */}
       <section className="m-28">
-        <div className="container mx-auto px-8">
-          
-        </div>
+        <div className="container mx-auto px-8"></div>
       </section>
     </div>
   );

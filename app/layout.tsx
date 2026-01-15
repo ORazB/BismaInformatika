@@ -67,7 +67,7 @@ export default async function RootLayout({
     });
 
     if (!user) {
-      throw new Error(`User not found for ID: ${userId}`);
+      return null;
     }
     return user;
   }

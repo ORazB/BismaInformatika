@@ -76,7 +76,7 @@ If all steps are followed correctly, the website should now be running locally.
 
 ## ✨ Team
 
-- **Keita** – Project Lead & Lead Developer  
+- **ORazB** – Project Lead & Lead Developer  
 - **Yogiksigma** – Frontend & UI Design  
-- **Winter** – Frontend & UI Design
-- **Team Member 3** – Frontend & UI Design  
+- **WinterForYou** – Frontend & UI Design
+- **AtsuID** – Frontend & UI Design  

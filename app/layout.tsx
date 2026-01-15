@@ -64,7 +64,7 @@ export default async function RootLayout({
     });
 
     if (!user) {
-      throw new Error(`User not found for ID: ${userId}`);
+      return null;
     }
     return user;
   }
@@ -99,9 +99,9 @@ const Navbar = ({ actingUser }: { actingUser: User | null }) => {
           </Link>
           <ul className="flex gap-10">
             <li>
-              <a className="text-lg hover:underline" href="/">
+              <Link className="text-lg hover:underline" href="/">
                 Home
-              </a>
+              </Link>
             </li>
             <li>
               <a className="text-lg hover:underline" href="/courses">
@@ -123,7 +123,7 @@ const Navbar = ({ actingUser }: { actingUser: User | null }) => {
 
         <div className="clerk relative">
           <SignedOut>
-            <SignInButton>
+            <SignInButton>    
               <button className="px-4 py-2 rounded-lg font-semibold hover:underline cursor-pointer">
                 Login
               </button>
@@ -140,7 +140,7 @@ const Navbar = ({ actingUser }: { actingUser: User | null }) => {
 
           <SignedIn>
             <div className="scale-125 cursor-pointer">
-              {actingUser && <UserProfileButton user={actingUser} />}
+              <UserProfileButton user={actingUser} />
             </div>
           </SignedIn>
         </div>

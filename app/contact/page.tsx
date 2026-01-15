@@ -1,7 +1,3 @@
-// Next.js
-import Link from "next/link";
-import Image from "next/image";
-
 // Components
 import NewsLetter from "@/components/LayoutComponents/NewsLetter";
 
@@ -13,7 +9,7 @@ export default function Contact() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center mb-8 md:mb-10 lg:mb-12">
             <h2 className="text-gray-900 text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-wide text-center">
-              We're Here To Help
+              We`re Here To Help
             </h2>
           </div>
 

@@ -236,7 +236,7 @@ export default function Home() {
                     className="w-full h-full rounded-full object-cover"
                     width={64}
                     height={64}
-                    src={"/landing-page/profiles/profile-1.jpg"}
+                    src={"/landing-page/profiles/profile-4.jpg"}
                     alt="review"
                   ></Image>
                 </div>
@@ -267,7 +267,7 @@ export default function Home() {
                     className="w-full h-full rounded-full object-cover"
                     width={64}
                     height={64}
-                    src={"/landing-page/profiles/profile-1.jpg"}
+                    src={"/landing-page/profiles/profile-2.jpg"}
                     alt="review"
                   ></Image>
                 </div>
@@ -298,7 +298,7 @@ export default function Home() {
                     className="w-full h-full rounded-full object-cover"
                     width={64}
                     height={64}
-                    src={"/landing-page/profiles/profile-1.jpg"}
+                    src={"/landing-page/profiles/profile-3.jpg"}
                     alt="review"
                   ></Image>
                 </div>

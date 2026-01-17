@@ -69,6 +69,6 @@ If all steps are followed correctly, the website should now be running locally.
 
 ## Project Purpose
 
-- Fulfill PKL assignment requirements from Bisma Informatika
+- Fulfill PKL assignment from Bisma Informatika
 - Apply real-world IT development tools
 - Practice modern full-stack web development

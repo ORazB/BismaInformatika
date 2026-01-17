@@ -1,82 +1,74 @@
-## 📌 Project Overview
+# Project Overview
 
-This website project was developed as part of a **PKL (Praktik Kerja Lapangan) task assigned by Bisma Informatika**.  
-The project is designed to provide information related to **offline training programs within Bisma Informatika**.
+This website was developed as part of a PKL (Praktik Kerja Lapangan) task assigned by Bisma Informatika. The project provides information about offline training programs within Bisma Informatika.
 
----
+## Tech Stack
 
-## 🛠 Tech Stack
-
-- Next.js (App Router)
+- Next.js
 - TypeScript
 - Prisma ORM
 - MySQL
 - Tailwind CSS
 - Node.js
 
-## Library
+## Libraries
+
 - Clerk
 - Swiper.js
 - UploadCare
 
----
+## Requirements
 
-## ✅ Requirements
-
-Before running this project, make sure the following are installed:
+Before running this project, ensure the following are installed:
 
 - Node.js (version 18 or newer)
 - Git
 - XAMPP (MySQL)
 
----
+## How to Run This Project
 
-## 🚀 How to Run This Project
+Follow these steps in order:
 
-Follow the steps below **in order**.
+1. Clone the repository and enter the project folder:
+   ```
+   git clone <repository-url>
+   cd <project-folder>
+   ```
 
-1. Clone the repository and enter the project folder  
-   `git clone <repository-url>`  
-   `cd <project-folder>`
+2. Install dependencies:
+   ```
+   npm install
+   ```
 
-2. Install all dependencies  
-   `npm install`
+3. Start MySQL in XAMPP and ensure it is running.
 
-3. Open **XAMPP** and start **MySQL**  
-   Make sure MySQL status is running.
+4. Create a `.env` file in the root directory with your database configuration:
+   ```
+   DATABASE_URL="mysql://root:@localhost:3306/your_database_name"
+   ```
+   Ensure the database exists (create via phpMyAdmin if needed).
 
-4. Create a `.env` file in the root directory and add the database configuration  
-   `DATABASE_URL="mysql://root:@localhost:3306/your_database_name"`
+5. Generate Prisma client:
+   ```
+   npx prisma generate
+   ```
 
-   Ensure the database exists (can be created via phpMyAdmin).
+6. Run database migration:
+   ```
+   npx prisma migrate dev
+   ```
 
-5. Generate Prisma client  
-   `npx prisma generate`
+7. Start the development server:
+   ```
+   npm run dev
+   ```
 
-6. Run database migration  
-   `npx prisma migrate dev`
-
-7. Start the development server  
-   `npm run dev`
-
-8. Open the project in a browser  
-   `http://localhost:3000`
+8. Open the project in your browser at `http://localhost:3000`
 
 If all steps are followed correctly, the website should now be running locally.
 
----
+## Project Purpose
 
-## 📚 Project Purpose
-
-- Fulfill PKL assignment requirements from **Bisma Informatika**
+- Fulfill PKL assignment requirements from Bisma Informatika
 - Apply real-world IT development tools
-- Practice modern full-stack web development workflows
-
----
-
-## ✨ Team
-
-- **ORazB** – Project Lead & Lead Developer  
-- **Yogiksigma** – Frontend & UI Design  
-- **WinterForYou** – Frontend & UI Design
-- **AtsuID** – Frontend & UI Design  
+- Practice modern full-stack web development

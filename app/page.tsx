@@ -26,14 +26,23 @@ export default function Home() {
               </p>
 
               <div className="button__container mt-4 flex flex-col sm:flex-row gap-4 lg:justify-start">
-                <button className="px-6 py-1 bg-white text-primary cursor-pointer font-semibold rounded-full transition">
+                <Link
+                  href={"/courses"}
+                  className="px-6 py-2 flex items-center bg-white text-primary cursor-pointer font-semibold rounded-full transition"
+                >
                   <i className="bx bx-caret-right align-middle text-xl"></i>{" "}
                   Jelajahi Kursus
-                </button>
-                <button className="px-6 py-1 bg-transparent border-2 border-white text-white cursor-pointer font-semibold rounded-full transition">
+                </Link>
+                <Link
+                  target={"_blank"}
+                  href={
+                    "https://wa.me/6281234567890?text=Halo%2C%20saya%20ingin%20berbicara%20dengan%20expert%20tentang%20sertifikasi%20BNSP."
+                  }
+                  className="flex items-center px-6 py-2 bg-transparent border-2 border-white text-white cursor-pointer font-semibold rounded-full transition"
+                >
                   <i className="bx bx-caret-right align-middle text-xl"></i>{" "}
                   Bicara Dengan Expert
-                </button>
+                </Link>
               </div>
             </div>
 
@@ -167,7 +176,7 @@ export default function Home() {
                 sizes="(min-width: 1024px) 50vw, 100vw"
               />
             </div>
-          
+
             {/* 4 SMALL IMAGES */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-full">
               <Image
@@ -200,7 +209,6 @@ export default function Home() {
               />
             </div>
           </div>
-
         </div>
       </section>
 

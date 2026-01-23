@@ -3,6 +3,12 @@ import { auth } from "@clerk/nextjs/server";
 // Components
 import CourseDetails from "@/components/CourseComponents/CourseDetails";
 
+// Types
+type EnrollmentCountPerCourse = {
+  courseId: number;
+  _count: number;
+};
+
 export default async function ProfilePage({
   params,
 }: {
@@ -10,6 +16,7 @@ export default async function ProfilePage({
 }) {
   const { id } = await params;
   const { userId } = await auth();
+
   
   if (!userId) {
     console.error("User not authenticated");
@@ -20,6 +27,7 @@ export default async function ProfilePage({
   });
 
   if (!course) {
+
     return (
       <div className="col-span-3 items-center justify-center">
         <p>No results found.</p>
@@ -50,16 +58,28 @@ export default async function ProfilePage({
       where: { id: course.categoryId || 0 },
     });
   }
+
+  const courseEnrollments = await prisma.userCourse.groupBy({
+    by: ["courseId"],
+    where: { courseId: course.id },
+    _count: {
+      courseId: true,
+    },
+  });
   
   const exists = await prisma.userCourse.findUnique({
     where: { userId_courseId: { userId: user.id, courseId: course.id } }
   });
   
   const purchased = exists ? true : false;
+  
+  const totalEnrollments: EnrollmentCountPerCourse = courseEnrollments[0] 
+    ? { courseId: courseEnrollments[0].courseId, _count: courseEnrollments[0]._count.courseId }
+    : { courseId: course.id, _count: 0 };
 
   return (
     <div className="w-full">
-      <CourseDetails course={serializedCourse} category={category} user={user} purchased={purchased} />
+      <CourseDetails course={serializedCourse} category={category} user={user} purchased={purchased} totalEnrollments={totalEnrollments} />
     </div>
   );
 }

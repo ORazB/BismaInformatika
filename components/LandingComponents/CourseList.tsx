@@ -61,7 +61,7 @@ export default function CourseList() {
         <div className="absolute bottom-0 left-0 right-0 border-b-4 border-gray-200"></div>
       </div>
 
-      <div className="mt-4 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-4 w-full gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         {courseData![activeTab]?.map((contentItem: any, index) => (
           <Link
             href=""

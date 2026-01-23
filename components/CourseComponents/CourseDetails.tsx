@@ -20,15 +20,22 @@ interface SerailizedCourse {
   updatedAt: Date;
 }
 
+type EnrollmentCountPerCourse = {
+  courseId: number;
+  _count: number;
+};
+
 export default function CourseDetails({
   course,
   category,
   user,
   purchased,
+  totalEnrollments,
 }: {
   course: SerailizedCourse;
   category: Category | null;
   user: User;
+  totalEnrollments: EnrollmentCountPerCourse;
   purchased: boolean;
 }) {
   const router = useRouter();
@@ -50,7 +57,7 @@ export default function CourseDetails({
       console.error("Failed to buy course", data.error);
     }
   };
-  
+
   const handleDelete = async () => {
     const response = await fetch(`/api/courses/refund?id=${course.id}`, {
       method: "DELETE",
@@ -111,7 +118,7 @@ export default function CourseDetails({
             {/* Students */}
             <div>
               <p className="text-gray-text font-semibold text-lg">Students</p>
-              <h4 className="text-text font-semibold text-lg">151,410</h4>
+              <h4 className="text-text font-semibold text-lg">{totalEnrollments._count}</h4>
             </div>
 
             {/* Language */}

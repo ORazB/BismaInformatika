@@ -36,32 +36,138 @@
 
   "Microsoft Excel": [
     {
-      "Title": "Excel for Beginners",
-      "Description": "Learn the fundamentals of Excel."
+      "title": "Arduino Programming: From Basics to Advanced Projects",
+      "image": "/landing-page/course-list/Arduino.jpg",
+      "rating": 4.5,
+      "totalReview": 325420,
+      "price": 299000,
+      "destination": ""
     },
     {
-      "Title": "Excel for Data Analysis",
-      "Description": "Use Excel to analyze and visualize data."
+      "title": "Office Applications Mastery: Excel, Word & PowerPoint",
+      "image": "/landing-page/course-list/Internet-Office-Aplications.jpg",
+      "author": "Sarah Mitchell, Business Productivity Expert",
+      "rating": 4.3,
+      "totalReview": 287503,
+      "price": 199000
+    },
+    {
+      "title": "Network Technician: Complete Networking Guide",
+      "image": "/landing-page/course-list/Teknisi-Jaringan.jpg",
+      "author": "Ir. Budi Santoso, Network Engineer",
+      "rating": 4.6,
+      "totalReview": 412105,
+      "price": 349000
+    },
+    {
+      "title": "UI/UX Design: Create Beautiful User Experiences",
+      "image": "/landing-page/course-list/UI-UX.jpg",
+      "author": "Jessica Anderson, Lead UX Designer",
+      "rating": 4.4,
+      "totalReview": 356789,
+      "price": 279000
     }
   ],
   "Digital Marketing": [
     {
-      "Title": "Social Media Marketing",
-      "Description": "Learn how to market on social media platforms."
+      "title": "Arduino Programming: From Basics to Advanced Projects",
+      "image": "/landing-page/course-list/Arduino.jpg",
+      "rating": 4.5,
+      "totalReview": 325420,
+      "price": 299000,
+      "destination": ""
     },
     {
-      "Title": "SEO Fundamentals",
-      "Description": "Learn the basics of SEO for websites."
+      "title": "Office Applications Mastery: Excel, Word & PowerPoint",
+      "image": "/landing-page/course-list/Internet-Office-Aplications.jpg",
+      "author": "Sarah Mitchell, Business Productivity Expert",
+      "rating": 4.3,
+      "totalReview": 287503,
+      "price": 199000
+    },
+    {
+      "title": "Network Technician: Complete Networking Guide",
+      "image": "/landing-page/course-list/Teknisi-Jaringan.jpg",
+      "author": "Ir. Budi Santoso, Network Engineer",
+      "rating": 4.6,
+      "totalReview": 412105,
+      "price": 349000
+    },
+    {
+      "title": "UI/UX Design: Create Beautiful User Experiences",
+      "image": "/landing-page/course-list/UI-UX.jpg",
+      "author": "Jessica Anderson, Lead UX Designer",
+      "rating": 4.4,
+      "totalReview": 356789,
+      "price": 279000
     }
   ],
   "Game Development": [
     {
-      "Title": "Introduction to Unity",
-      "Description": "Learn to build 2D and 3D games using Unity."
+      "title": "Arduino Programming: From Basics to Advanced Projects",
+      "image": "/landing-page/course-list/Arduino.jpg",
+      "rating": 4.5,
+      "totalReview": 325420,
+      "price": 299000,
+      "destination": ""
     },
     {
-      "Title": "Game Development with Unreal Engine",
-      "Description": "Create high-performance games using Unreal Engine."
+      "title": "Office Applications Mastery: Excel, Word & PowerPoint",
+      "image": "/landing-page/course-list/Internet-Office-Aplications.jpg",
+      "author": "Sarah Mitchell, Business Productivity Expert",
+      "rating": 4.3,
+      "totalReview": 287503,
+      "price": 199000
+    },
+    {
+      "title": "Network Technician: Complete Networking Guide",
+      "image": "/landing-page/course-list/Teknisi-Jaringan.jpg",
+      "author": "Ir. Budi Santoso, Network Engineer",
+      "rating": 4.6,
+      "totalReview": 412105,
+      "price": 349000
+    },
+    {
+      "title": "UI/UX Design: Create Beautiful User Experiences",
+      "image": "/landing-page/course-list/UI-UX.jpg",
+      "author": "Jessica Anderson, Lead UX Designer",
+      "rating": 4.4,
+      "totalReview": 356789,
+      "price": 279000
+    }
+  ],
+  "Finance": [
+    {
+      "title": "Arduino Programming: From Basics to Advanced Projects",
+      "image": "/landing-page/course-list/Arduino.jpg",
+      "rating": 4.5,
+      "totalReview": 325420,
+      "price": 299000,
+      "destination": ""
+    },
+    {
+      "title": "Office Applications Mastery: Excel, Word & PowerPoint",
+      "image": "/landing-page/course-list/Internet-Office-Aplications.jpg",
+      "author": "Sarah Mitchell, Business Productivity Expert",
+      "rating": 4.3,
+      "totalReview": 287503,
+      "price": 199000
+    },
+    {
+      "title": "Network Technician: Complete Networking Guide",
+      "image": "/landing-page/course-list/Teknisi-Jaringan.jpg",
+      "author": "Ir. Budi Santoso, Network Engineer",
+      "rating": 4.6,
+      "totalReview": 412105,
+      "price": 349000
+    },
+    {
+      "title": "UI/UX Design: Create Beautiful User Experiences",
+      "image": "/landing-page/course-list/UI-UX.jpg",
+      "author": "Jessica Anderson, Lead UX Designer",
+      "rating": 4.4,
+      "totalReview": 356789,
+      "price": 279000
     }
   ]
 }

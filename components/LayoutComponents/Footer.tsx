@@ -59,7 +59,7 @@ export default function Footer() {
               <h3 className="text-lg font-semibold mb-4">Help</h3>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <a href="/support" className="hover:underline">
+                  <a href="https://wa.me/628123456789?text=Hello%20Bisma%20Informatika" className="hover:underline">
                     Customer Support
                   </a>
                 </li>

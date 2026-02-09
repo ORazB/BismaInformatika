@@ -16,13 +16,13 @@ import "boxicons/css/boxicons.min.css";
 
 export default function HomeSlider() {
   const slides = [
-    { destination: "", people: "1M+", title: "Generative AI" },
-    { destination: "", people: "2M+", title: "IT Certifications" },
-    { destination: "", people: "4M+", title: "Data Science" },
+    { destination: "/courses", people: "1M+", title: "Generative AI" },
+    { destination: "/courses", people: "2M+", title: "IT Certifications" },
+    { destination: "/courses", people: "4M+", title: "Data Science" },
 
-    { destination: "", people: "1M+", title: "Generative AI" },
-    { destination: "", people: "2M+", title: "IT Certifications" },
-    { destination: "", people: "4M+", title: "Data Science" },
+    { destination: "/courses", people: "1M+", title: "Generative AI" },
+    { destination: "/courses", people: "2M+", title: "IT Certifications" },
+    { destination: "/courses", people: "4M+", title: "Data Science" },
   ];
 
   return (

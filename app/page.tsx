@@ -47,14 +47,14 @@ export default function Home() {
             </div>
 
             <div className="image__container relative w-full flex items-center justify-center">
-              <div className="play__line z-20 absolute left-4 lg:left-7 rotate-7 h-[300px] lg:h-[500px] w-3 bg-white hidden lg:flex flex-col items-center justify-center">
+              <Link target="_blank" href={"https://www.youtube.com/watch?v=7YyALikxAlU"} className="play__line z-20 absolute left-4 lg:left-7 rotate-7 h-[300px] lg:h-[500px] w-3 bg-white hidden lg:flex flex-col items-center justify-center">
                 <div className="relative flex items-center justify-center">
                   <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full p-10 bg-white opacity-50 rounded-full z-10"></div>
                   <button className="relative play__button bg-white -rotate-6 p-2 rounded-full z-20 cursor-pointer">
                     <i className="text-primary text-5xl align-middle bx bx-play"></i>
                   </button>
                 </div>
-              </div>
+              </Link>
 
               <Image
                 loading="eager"
@@ -232,102 +232,102 @@ export default function Home() {
       {/* Reviews */}
       <section className="mt-20 lg:mt-28">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid place-items-center gap-2">
-            <h2 className="text-text text-3xl lg:text-5xl font-semibold w-full lg:w-1/3 tracking-wide text-center">
+          <div className="grid place-items-center gap-4 mb-12">
+            <h2 className="text-text text-3xl lg:text-5xl font-semibold w-full lg:w-2/3 tracking-wide text-center leading-tight">
               Hear Directly From Our Learners
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
-            <div className="bg-gray-100 p-4 rounded-2xl grid gap-6">
-              <div className="rounded-full p-4 bg-primary justify-self-start">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+            <div className="bg-white border border-gray-200 p-6 lg:p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+              <div className="rounded-full p-3 bg-primary w-fit mb-6">
                 <i className="text-white bx bxs-quote-left text-2xl"></i>
               </div>
 
-              <p className="px-2 text-text font-semibold text-lg/7">
-                I was struggling to transition from print to digital design, and
+              <p className="text-gray-700 text-base lg:text-lg leading-relaxed mb-8">
+                "I was struggling to transition from print to digital design, and
                 I often felt overwhelmed by all the new tools and concepts. But
                 Bisma Academy courses guided me step by step and helped me
-                refine my UI/UX skills with clear explanations.
+                refine my UI/UX skills with clear explanations."
               </p>
 
-              <div className="flex items-center gap-2 mt-8">
-                <div className="rounded-full w-[50px] h-[50px]">
+              <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
+                <div className="rounded-full w-12 h-12">
                   <Image
                     className="w-full h-full rounded-full object-cover"
-                    width={64}
-                    height={64}
+                    width={48}
+                    height={48}
                     src={"/landing-page/profiles/profile-4.jpg"}
-                    alt="review"
+                    alt="Clarence Evelien"
                   ></Image>
                 </div>
-                <div className="grid">
-                  <h3 className="text-text font-semibold tracking-wide">
+                <div>
+                  <h3 className="text-text font-semibold text-base">
                     Clarence Evelien
                   </h3>
-                  <p className="text-gray-text text-sm">Student</p>
+                  <p className="text-gray-500 text-sm">Student</p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-gray-100 p-4 rounded-2xl grid gap-6">
-              <div className="rounded-full p-4 bg-primary justify-self-start">
+            <div className="bg-white border border-gray-200 p-6 lg:p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+              <div className="rounded-full p-3 bg-primary w-fit mb-6">
                 <i className="text-white bx bxs-quote-left text-2xl"></i>
               </div>
 
-              <p className="px-2 text-text font-semibold text-lg/7">
-                What I loved most about Bisma Academy was the hands-on approach
+              <p className="text-gray-700 text-base lg:text-lg leading-relaxed mb-8">
+                "What I loved most about Bisma Academy was the hands-on approach
                 that made every lesson feel relevant and engaging. The courses
                 were highly interactive, filled with real examples, and I could
-                immediately apply what I was learning.
+                immediately apply what I was learning."
               </p>
 
-              <div className="flex items-center gap-2 mt-8">
-                <div className="rounded-full w-[50px] h-[50px]">
+              <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
+                <div className="rounded-full w-12 h-12">
                   <Image
                     className="w-full h-full rounded-full object-cover"
-                    width={64}
-                    height={64}
+                    width={48}
+                    height={48}
                     src={"/landing-page/profiles/profile-2.jpg"}
-                    alt="review"
+                    alt="Togzhan Aigul"
                   ></Image>
                 </div>
-                <div className="grid">
-                  <h3 className="text-text font-semibold tracking-wide">
+                <div>
+                  <h3 className="text-text font-semibold text-base">
                     Togzhan Aigul
                   </h3>
-                  <p className="text-gray-text text-sm">Student</p>
+                  <p className="text-gray-500 text-sm">Student</p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-gray-100 p-4 rounded-2xl grid gap-6">
-              <div className="rounded-full p-4 bg-primary justify-self-start">
+            <div className="bg-white border border-gray-200 p-6 lg:p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+              <div className="rounded-full p-3 bg-primary w-fit mb-6">
                 <i className="text-white bx bxs-quote-left text-2xl"></i>
               </div>
 
-              <p className="px-2 text-text font-semibold text-lg/7">
-                I work a full-time job and never imagined I’d have enough time
+              <p className="text-gray-700 text-base lg:text-lg leading-relaxed mb-8">
+                "I work a full-time job and never imagined I'd have enough time
                 or energy to learn coding. However, the bite-sized lessons,
                 supportive community, and flexible schedule at Bisma Academy
-                made it surprisingly manageable.
+                made it surprisingly manageable."
               </p>
 
-              <div className="flex items-center gap-2 mt-8">
-                <div className="rounded-full w-[50px] h-[50px]">
+              <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
+                <div className="rounded-full w-12 h-12">
                   <Image
                     className="w-full h-full rounded-full object-cover"
-                    width={64}
-                    height={64}
+                    width={48}
+                    height={48}
                     src={"/landing-page/profiles/profile-3.jpg"}
-                    alt="review"
+                    alt="Bessie Cooper"
                   ></Image>
                 </div>
-                <div className="grid">
-                  <h3 className="text-text font-semibold tracking-wide">
+                <div>
+                  <h3 className="text-text font-semibold text-base">
                     Bessie Cooper
                   </h3>
-                  <p className="text-gray-text text-sm">Student</p>
+                  <p className="text-gray-500 text-sm">Student</p>
                 </div>
               </div>
             </div>
@@ -344,39 +344,39 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="grid gap-4 grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 place-items-center mt-8">
+          <div className="grid gap-8 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 place-items-center mt-8">
             <Image
-              className="saturate-0 hover:saturate-100 transition-all"
-              width={1000}
-              height={450}
+              className="saturate-0 hover:saturate-100 transition-all w-full h-auto max-w-[120px] sm:max-w-[140px] lg:max-w-40"
+              width={160}
+              height={72}
               alt="SMK Ti Bali Global Jimbaran"
               src="/landing-page/testimonials/testimonial-1.png"
             ></Image>
             <Image
-              className="saturate-0 hover:saturate-100 transition-all"
-              width={1000}
-              height={450}
+              className="saturate-0 hover:saturate-100 transition-all w-full h-auto max-w-[120px] sm:max-w-[140px] lg:max-w-40"
+              width={160}
+              height={72}
               alt="SMK Ti Bali Global Jimbaran"
               src="/landing-page/testimonials/testimonial-2.png"
             ></Image>
             <Image
-              className="saturate-0 hover:saturate-100 transition-all"
-              width={1000}
-              height={450}
+              className="saturate-0 hover:saturate-100 transition-all w-full h-auto max-w-[120px] sm:max-w-[140px] lg:max-w-40"
+              width={160}
+              height={72}
               alt="SMK Ti Bali Global Jimbaran"
               src="/landing-page/testimonials/testimonial-3.png"
             ></Image>
             <Image
-              className="saturate-0 hover:saturate-100 transition-all"
-              width={1000}
-              height={450}
+              className="saturate-0 hover:saturate-100 transition-all w-full h-auto max-w-[120px] sm:max-w-[140px] lg:max-w-40"
+              width={160}
+              height={72}
               alt="SMK Ti Bali Global Jimbaran"
               src="/landing-page/testimonials/testimonial-4.png"
             ></Image>
             <Image
-              className="saturate-0 hover:saturate-100 transition-all"
-              width={1000}
-              height={450}
+              className="saturate-0 hover:saturate-100 transition-all w-full h-auto max-w-[120px] sm:max-w-[140px] lg:max-w-40"
+              width={160}
+              height={72}
               alt="SMK Ti Bali Global Jimbaran"
               src="/landing-page/testimonials/testimonial-5.png"
             ></Image>

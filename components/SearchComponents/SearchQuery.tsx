@@ -100,7 +100,7 @@ export default function SearchQuery({
                           alt="course image"
                           src={
                             course.imageUuid
-                              ? `https://63hy5293v3.ucarecd.net/${course.imageUuid}/-/preview/736x736/`
+                              ? `https://1sschtwdwh.ucarecd.net/${course.imageUuid}/-/preview/736x736/`
                               : "/course-page/course-placeholder.png"
                           }
                           width={1000}

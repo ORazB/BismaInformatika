@@ -72,7 +72,7 @@ export default function Home() {
       {/* Features */}
       <section className="bg-secondary">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-10 text-center lg:text-left gap-8">
+          <div className="grid place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-10 text-center lg:text-left gap-8">
             <div className="feature__item flex flex-col lg:flex-row items-center gap-4">
               <div className="feature__icon">
                 <i className="bx bxs-graduation text-5xl text-white"></i>

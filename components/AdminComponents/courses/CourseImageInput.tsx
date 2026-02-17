@@ -19,7 +19,7 @@ export default function CourseImageInput({ initialImage }: { initialImage: strin
   return (
     <div className="space-y-4">
       <FileUploaderRegular
-        pubkey="1b5e557fe4c7659013c8"
+        pubkey="0d94f54ff475d5e102f2"
         classNameUploader="uc-light uc-purple"
         store={false}
         sourceList="local"
@@ -40,7 +40,7 @@ export default function CourseImageInput({ initialImage }: { initialImage: strin
           <img
             src={
               fileUuid
-                ? `https://63hy5293v3.ucarecd.net/${fileUuid}/-/preview/736x736/`
+                ? `https://1sschtwdwh.ucarecd.net/${fileUuid}/-/preview/736x736/`
                 : "/course-page/course-placeholder.png"
             }
             alt="Course preview"

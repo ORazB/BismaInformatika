@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
 
   const authSchema = new UploadcareSimpleAuthSchema({
     publicKey: process.env.UPLOADCARE_PUBLIC_KEY!,
-    secretKey: process.env.UPLOADC_CARE_SECRET!,
+    secretKey: process.env.UPLOADCARE_SECRET_KEY!,
   });
 
   try {
@@ -73,6 +73,7 @@ export async function POST(req: NextRequest) {
     // Store Course Image
     let storedFileInfo = null;
     if (imageUuid) {
+      console.log(imageUuid)
       storedFileInfo = await storeFile(
         { uuid: imageUuid },
         { authSchema }

@@ -102,7 +102,7 @@ export default function CoursesViewPanel({
               <Image
                 src={
                   course.imageUuid
-                    ? `https://63hy5293v3.ucarecd.net/${course.imageUuid}/-/preview/736x736/`
+                    ? `https://1sschtwdwh.ucarecd.net/${course.imageUuid}/-/preview/736x736/`
                     : "/course-page/course-placeholder.png"
                 }
                 alt={course.title}

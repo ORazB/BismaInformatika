@@ -355,7 +355,7 @@ export default function ProfilePage({
                     className="rounded-xl object-cover w-16 h-16 md:w-24 md:h-24"
                     src={
                       course.imageUuid
-                        ? `https://63hy5293v3.ucarecd.net/${course.imageUuid}/-/preview/736x736/`
+                        ? `https://1sschtwdwh.ucarecd.net/${course.imageUuid}/-/preview/736x736/`
                         : "/course-page/course-placeholder.png"
                     }
                     alt="Course Details"

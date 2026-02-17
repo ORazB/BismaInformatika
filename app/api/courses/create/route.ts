@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
 
   const authSchema = new UploadcareSimpleAuthSchema({
     publicKey: process.env.UPLOADCARE_PUBLIC_KEY!,
-    secretKey: process.env.UPLOADC_CARE_SECRET!,
+    secretKey: process.env.UPLOADCARE_SECRET_KEY!,
   });
 
   try {
@@ -83,8 +83,14 @@ export async function POST(req: NextRequest) {
     revalidatePath("/admin/courses");
     return NextResponse.json({ course: createdCourse, storedFileInfo });
 
-  } catch (error) {
-    console.error("Critical Route Error: ", error);
-    return NextResponse.json({ error: "Server Error" }, { status: 500 });
+  } catch (error: any) {
+    console.error("🔥 FULL ERROR:", error);
+    console.error("🔥 MESSAGE:", error?.message);
+    console.error("🔥 STACK:", error?.stack);
+  
+    return NextResponse.json(
+      { error: error?.message ?? "Unknown error" },
+      { status: 500 }
+    );
   }
 }

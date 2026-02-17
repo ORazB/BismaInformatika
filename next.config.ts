@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: '63hy5293v3.ucarecd.net',
+        hostname: '1sschtwdwh.ucarecd.net',
         port: '',
         pathname: '/**',
       },

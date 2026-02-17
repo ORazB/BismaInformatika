@@ -317,7 +317,7 @@ export default function ProfilePage({
                 </div>
                 <div>
                   <p className="text-xs text-gray-400 mb-1">
-                    Completed Courses
+                    Owned Courses
                   </p>
                   <p className="text-sm font-semibold text-gray-900">
                     {allCourses.length || 0}

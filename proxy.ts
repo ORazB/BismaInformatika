@@ -4,9 +4,16 @@ import { NextResponse } from 'next/server';
 import { UserRole } from "@/types/roles";
 
 const isAdminRoute = createRouteMatcher(['/admin(.*)']);
+const isPublicRoute = createRouteMatcher(['/login', '/register']);
 
 export default clerkMiddleware(async (auth, req) => {
   const { userId } = await auth();
+  
+  if (userId && isPublicRoute(req)) {
+    const homeUrl = new URL('/', req.url);
+    return NextResponse.redirect(homeUrl);
+  }
+  
   if (isAdminRoute(req)) {
 
     if (!userId) return new NextResponse('Unauthorized', { status: 401 });

@@ -15,7 +15,7 @@ interface ProfilePageProps {
 export default function ProfilePage({
   user,
   clerkUser,
-  completedEnrollments,
+  // completedEnrollments => might need in the future,
   allCourses,
 }: ProfilePageProps) {
 
@@ -168,10 +168,10 @@ export default function ProfilePage({
                 </div>
                 <div>
                   <p className="text-xs text-gray-400 mb-1">
-                    Completed Courses
+                    Owned Courses
                   </p>
                   <p className="text-sm font-semibold text-gray-900">
-                    {completedEnrollments || 0}
+                    {allCourses.length || 0}
                   </p>
                 </div>
               </div>
@@ -320,7 +320,7 @@ export default function ProfilePage({
                     Completed Courses
                   </p>
                   <p className="text-sm font-semibold text-gray-900">
-                    {completedEnrollments || 0}
+                    {allCourses.length || 0}
                   </p>
                 </div>
               </div>

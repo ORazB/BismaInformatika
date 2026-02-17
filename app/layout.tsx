@@ -124,18 +124,21 @@ const Navbar = ({ actingUser }: { actingUser: User | null }) => {
         <div className="flex items-center gap-4">
           <SignedOut>
             <div className="flex items-center gap-3">
-              <SignInButton>
-                <button className="font-semibold hover:underline text-text">Login</button>
-              </SignInButton>
-          
+              <Link
+                href={"/login"}
+                className="font-semibold hover:underline text-text"
+              >
+                Login
+              </Link>
               <span className="h-5 w-0.5 bg-text" />
-          
-              <SignUpButton>
-                <button className="font-semibold hover:underline text-text">Sign Up</button>
-              </SignUpButton>
+              <Link
+                href={"/register"}
+                className="font-semibold hover:underline text-text"
+              >
+                Sign Up
+              </Link>
             </div>
           </SignedOut>
-
 
           <SignedIn>
             {actingUser && <UserProfileButton user={actingUser} />}

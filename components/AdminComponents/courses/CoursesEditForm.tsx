@@ -31,9 +31,9 @@ export default function CoursesEditPanel({ course, categories }: { course: Seria
 
   const router = useRouter();
 
-  useEffect(() => {
-    setRawPrice(Number(course.price));
-  }, [course.price]);
+  // useEffect(() => {
+  //   setRawPrice(Number(course.price));
+  // }, [course.price]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const rawValue = e.target.value.replace(/,/g, ""); // remove commas

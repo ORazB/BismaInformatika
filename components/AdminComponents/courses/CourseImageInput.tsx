@@ -39,6 +39,8 @@ export default function CourseImageInput({ initialImage }: { initialImage: strin
       {fileUuid && (
         <div className="w-48 cursor-pointer" onClick={triggerUploaderClick}>
           <Image
+            width={736}
+            height={736}
             src={
               fileUuid
                 ? `https://1sschtwdwh.ucarecd.net/${fileUuid}/-/preview/736x736/`

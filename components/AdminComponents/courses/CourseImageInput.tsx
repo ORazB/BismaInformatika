@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { FileUploaderRegular } from "@uploadcare/react-uploader/next";
 import "@uploadcare/react-uploader/core.css";
+import Image from "next/image";
 
 export default function CourseImageInput({ initialImage }: { initialImage: string }) {
   const [fileUuid, setFileUuid] = useState<string | null>(null);
@@ -37,7 +38,7 @@ export default function CourseImageInput({ initialImage }: { initialImage: strin
       {/* Preview image to re-trigger uploadcare */}
       {fileUuid && (
         <div className="w-48 cursor-pointer" onClick={triggerUploaderClick}>
-          <img
+          <Image
             src={
               fileUuid
                 ? `https://1sschtwdwh.ucarecd.net/${fileUuid}/-/preview/736x736/`

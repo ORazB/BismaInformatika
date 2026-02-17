@@ -1,8 +1,4 @@
 import prisma from "@/lib/prisma"
-import { Decimal } from "@prisma/client/runtime/library";
-
-import { clerkClient } from "@clerk/nextjs/server"
-
 import CoursesViewPanel from "@/components/AdminComponents/courses/CoursesViewPanel"
 
 export default async function CourseAdminPage() {

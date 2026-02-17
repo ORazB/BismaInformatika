@@ -83,11 +83,7 @@ export async function POST(req: NextRequest) {
     revalidatePath("/admin/courses");
     return NextResponse.json({ course: createdCourse, storedFileInfo });
 
-  } catch (error: any) {
-    console.error("🔥 FULL ERROR:", error);
-    console.error("🔥 MESSAGE:", error?.message);
-    console.error("🔥 STACK:", error?.stack);
-  
+  } catch (error) {  
     return NextResponse.json(
       { error: error?.message ?? "Unknown error" },
       { status: 500 }

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 
 // Next.Js
@@ -17,11 +17,11 @@ export default function RegisterPage() {
 
   const router = useRouter();
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
     if (formData.password !== formData.confirmPassword) {
@@ -70,7 +70,7 @@ export default function RegisterPage() {
               onChange={handleChange}
               placeholder="Jane Doe"
               required
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
             />
           </div>
 
@@ -86,7 +86,7 @@ export default function RegisterPage() {
               onChange={handleChange}
               placeholder="jane@example.com"
               required
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
             />
           </div>
 
@@ -102,7 +102,7 @@ export default function RegisterPage() {
               onChange={handleChange}
               placeholder="Min. 8 characters"
               required
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
             />
           </div>
 
@@ -118,7 +118,7 @@ export default function RegisterPage() {
               onChange={handleChange}
               placeholder="Repeat password"
               required
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
             />
           </div>
 
